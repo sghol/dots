@@ -1,4 +1,4 @@
-# ---------
+# ---------------------------o
 # ALISEES
 # ---------
 alias sx=startx
@@ -34,21 +34,26 @@ export FILEMANAGER="thunar"
 export VIDEOEDITOR="kdenlive"
 export TERMINAL="st"
 export TERM="xterm-256color"
+
+# Path
+export PATH="$PATH:$HOME/bin:$XDG_DATA_HOME/nvim/mason/bin:$HOME/.cargo/bin:$XDG_CONFIG_HOME/emacs/bin:$XDG_DATA_HOME/uv/tools"
+
 # XDG
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
-# PL
+  
+# GO Lang
 export GOPATH=$XDG_DATA_HOME/go
 export GOBIN="$GOPATH/bin"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GOPROXY=direct
+export GOSUMDB=off
 
 export QT_QPA_PLATFORMTHEME=gtk3
-# Nvim Manpager
 export MANPAGER="nvim +Man!"
-# Extend path
-export PATH="$PATH:$HOME/bin:$XDG_DATA_HOME/nvim/mason/bin:$HOME/.cargo/bin:$XDG_CONFIG_HOME/emacs/bin:$XDG_DATA_HOME/uv/tools"
+
 # History
 export HISTSIZE=10000
 export HISTFILESIZE=20000

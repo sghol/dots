@@ -174,6 +174,7 @@ floating_layout = layout.Floating(
         Match(title="pinentry"),  # GPG key password entry
         Match(title="Blueman-manager"),  # GPG key password entry
         Match(title="flet"),  
+        Match(title="stab"),  
     ],
     **layout_config,
 )

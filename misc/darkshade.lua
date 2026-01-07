@@ -16,7 +16,7 @@ local bg = "#000000"
 local alt_bg = "#121212"
 local green = "#B4F6C0"
 local red = "#984936"
-local gray = "#727272"
+local gray = "#9B9EA4"
 
 -- Groups
 hi("Defualt", { fg = fg })
