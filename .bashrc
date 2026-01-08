@@ -48,7 +48,7 @@ export GOPATH=$XDG_DATA_HOME/go
 export GOBIN="$GOPATH/bin"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export GOPROXY=direct
+export GOPROXY=https://goproxy.io,direct
 export GOSUMDB=off
 
 export QT_QPA_PLATFORMTHEME=gtk3
@@ -59,7 +59,6 @@ export HISTSIZE=10000
 export HISTFILESIZE=20000
 export HISTCONTROL=ignoredups:ignorespace
 export HISTCONTROL=ignoreboth:erasedups
-
 
 # ------------------
 # EXTERNAL COMMANDS

@@ -106,7 +106,7 @@ static const char *colorname[] = {
 	"#E1E1E1",  /* Blue */
     "#E1E1E1",  /* Magenta */
     "#E1E1E1",  /* Cyan */
-	"#727272",  /* Gray */
+	"#9B9EA4",  /* Gray */
 
 	/* 8 bright colors */
 	"#212121",  /* light dark */
@@ -116,13 +116,13 @@ static const char *colorname[] = {
 	"#E0E2EA", /* light blue */
 	"#E0E2EA", /* light Magenta */
 	"#E0E2EA", /* light cyan */
-	"#727272", /* light gray */
+	"#9B9EA4", /* light gray */
 
 	[255] = 0,
-
+ 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#FAFAFA", /* cursor color */
-	"#555555", /* */
+	"#FAFAFA", /* cursor default color */
+	"#984936", /* cursor color on selection */
 	"#E1E1E1", /* default foreground colour */
 	"#000000", /* default background colour */
 };
