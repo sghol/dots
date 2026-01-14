@@ -14,7 +14,7 @@ vim.opt.wrap = false
 vim.opt.guicursor = ""
 vim.g.netrw_banner = 0
 
-vim.opt.showmode = false
+vim.opt.showmode = true
 vim.opt.cmdheight = 0
 vim.opt.statusline = "[%{toupper(mode())}]  %f  %m"
 vim.opt.laststatus = 0
@@ -118,6 +118,10 @@ vim.keymap.set({"n", "v"}, "<A-h>", "^")
 vim.keymap.set("i", "<A-l>", "<C-o>$")
 vim.keymap.set("i", "<A-h>", "<C-o>^")
 
+-- Newline while in insert mode
+vim.keymap.set({"i", "n"}, "<A-[>", "<Esc>O", opt)
+vim.keymap.set({"i", "n"}, "<A-]>", "<Esc>o", opt)
+
 -- Move line up/down
 vim.keymap.set("n", "<A-j>", ":move .+1<CR>==", opts)
 vim.keymap.set("n", "<A-k>", ":move .-2<CR>==", opts)
@@ -140,3 +144,5 @@ vim.keymap.set("n", "<C-f>", "<C-f>zz", opts)
 vim.keymap.set("n", "<C-b>", "<C-b>zz", opts)
 vim.keymap.set("n", "n", "nzzzv", opts)
 vim.keymap.set("n", "N", "Nzzzv", opts)
+vim.keymap.set("n", "*", "*zzzv", opts)
+vim.keymap.set("n", "#", "#zzzv", opts)

@@ -13,7 +13,7 @@ end
 -- Color palette
 local fg = "#E1E1E1"
 local bg = "#000000"
-local alt_bg = "#121212"
+local alt_bg = "#151515"
 local green = "#B4F6C0"
 local red = "#984936"
 local gray = "#9B9EA4"
