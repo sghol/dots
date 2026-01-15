@@ -12,7 +12,7 @@ fi
 # All wallpapers in array
 mapfile -t wallpapers < <(find "$WALLPAPER_DIR" -type f -name "*.jpg" -o -name "*.png" -o -name "*.jpeg")
 
-INDEX_FILE="$HOME/bin/.wall"
+INDEX_FILE="$HOME/.local/bin/.wall"
 current_index=$(cat "$INDEX_FILE" 2>/dev/null || echo 0)
 
 # Next wallpaper or back to 0

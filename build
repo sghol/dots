@@ -15,7 +15,8 @@ sudo pacman -Syu
 # BASIC CONFIG
 # --------------
 cd ~
-mkdir dwl dox pix vid mnt opt bin rpo 
+mkdir dwl dox pix vid mnt opt rpo 
+mkdir ~/.local/bin
 mkdir ~/.local/share/fonts
 mkdir ~/.local/share/icons
 mkdir ~/.local/share/themes
@@ -48,11 +49,11 @@ ln -s --force ~/rpo/dots/misc/fontconfig/ ~/.config/
 ln -s --force ~/rpo/dots/misc/gtk-3.0/ ~/.config/
 ln -s --force ~/rpo/dots/misc/picom/ ~/.config/
 
-ln -s --force ~/rpo/dots/bin/setbg ~/bin/
-ln -s --force ~/rpo/dots/bin/shot ~/bin/
-ln -s --force ~/rpo/dots/bin/tmuxer ~/bin/
-ln -s --force ~/rpo/dots/bin/autostart ~/bin/
-ln -s --force ~/rpo/dots/bin/launcher ~/bin/
+Ln -s --force ~/rpo/dots/bin/setbg ~/.local/bin/
+ln -s --force ~/rpo/dots/bin/shot ~/.local/bin/
+ln -s --force ~/rpo/dots/bin/tmuxer ~/.local/bin/
+ln -s --force ~/rpo/dots/bin/autostart ~/.local/bin/
+ln -s --force ~/rpo/dots/bin/launcher ~/.local/bin/
 
 
-ln -s --force ~/rpo/dots/misc/Orchis-Dark/ ~/.local//share/themes/
+ln -s --force ~/rpo/dots/misc/Orchis-Dark/ ~/.local/share/themes/

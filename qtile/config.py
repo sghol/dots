@@ -24,6 +24,7 @@ TERMINAL = os.environ.get("TERMINAL")
 BROWSER = os.environ.get("BROWSER")
 FILEMANAGER = os.environ.get("FILEMANAGER")
 VIDEOEDITOR = os.environ.get("VIDEOEDITOR")
+AUTOSTART_PATH = f"{HOME}/.local/bin/autostart"
 
 
 def navigate_floating(qtile):
@@ -327,6 +328,6 @@ def float_centerize(window):
 
 @hook.subscribe.startup_once
 def autostart():
-    Popen([f"{HOME}/bin/autostart"])
+    Popen([AUTOSTART_PATH])
     # qtile.spawn(f"{TERMINAL} -e tmux")
     # qtile.spawn(f"{BROWSER}")
