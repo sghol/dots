@@ -77,6 +77,8 @@ local function format_file()
 		vim.cmd("silent !black --quiet %")
 	elseif ft == "lua" then
 		vim.cmd("silent !stylua %")
+    elseif ft == "go" then
+        vim.cmd("silent !go fmt %")
 	else
 		vim.notify("No formatter for filetype: " .. ft, vim.log.levels.ERROR)
 	end

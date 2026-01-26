@@ -12,6 +12,7 @@ image/png=nsxiv.desktop
 x-scheme-handler/tonsite=userapp-Telegram Desktop-5O2YT2.desktop
 x-scheme-handler/tg=userapp-Telegram Desktop-A3OYT2.desktop
 x-scheme-handler/oblivion=oblivion-desktop.desktop
+application/x-zerosize=libreoffice-writer.desktop
 
 [Added Associations]
 application/pdf=firefox.desktop;
@@ -21,3 +22,5 @@ x-scheme-handler/tonsite=org.telegram.desktop.desktop;userapp-Telegram Desktop-5
 x-scheme-handler/tg=userapp-Telegram Desktop-A3OYT2.desktop;
 image/svg+xml=org.inkscape.Inkscape.desktop;gimp.desktop;
 text/calendar=vscode.desktop;emacs.desktop;
+text/x-go=firefox.desktop;libreoffice-writer.desktop;nvim.desktop;
+application/x-zerosize=libreoffice-writer.desktop;
