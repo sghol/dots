@@ -79,6 +79,12 @@ local function format_file()
 		vim.cmd("silent !stylua %")
     elseif ft == "go" then
         vim.cmd("silent !go fmt %")
+    elseif ft == "javascript" then
+        vim.cmd("silent !prettier --write %")
+    elseif ft == "html" then
+        vim.cmd("silent !prettier --write %")
+    elseif ft == "css" then
+        vim.cmd("silent !prettier --write %")
 	else
 		vim.notify("No formatter for filetype: " .. ft, vim.log.levels.ERROR)
 	end

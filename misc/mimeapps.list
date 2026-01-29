@@ -22,5 +22,6 @@ x-scheme-handler/tonsite=org.telegram.desktop.desktop;userapp-Telegram Desktop-5
 x-scheme-handler/tg=userapp-Telegram Desktop-A3OYT2.desktop;
 image/svg+xml=org.inkscape.Inkscape.desktop;gimp.desktop;
 text/calendar=vscode.desktop;emacs.desktop;
-text/x-go=firefox.desktop;libreoffice-writer.desktop;nvim.desktop;
+text/x-go=emacs.desktop;firefox.desktop;libreoffice-writer.desktop;nvim.desktop;
 application/x-zerosize=libreoffice-writer.desktop;
+text/javascript=firefox.desktop;
