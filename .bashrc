@@ -48,7 +48,7 @@ export GOPATH=$XDG_DATA_HOME/go
 export GOBIN="$GOPATH/bin"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export GOPROXY=https://goproxy.io,direct
+export GOPROXY=https://goproxy.io
 export GOSUMDB=off
 
 # NPM
