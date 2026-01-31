@@ -16,7 +16,7 @@ application/x-zerosize=libreoffice-writer.desktop
 
 [Added Associations]
 application/pdf=firefox.desktop;
-text/plain=emacs.desktop;firefox.desktop;nvim.desktop;
+text/plain=org.gnome.gedit.desktop;emacs.desktop;firefox.desktop;nvim.desktop;
 video/x-sgi-movie=vlc.desktop;
 x-scheme-handler/tonsite=org.telegram.desktop.desktop;userapp-Telegram Desktop-5O2YT2.desktop;
 x-scheme-handler/tg=userapp-Telegram Desktop-A3OYT2.desktop;
