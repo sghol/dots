@@ -249,7 +249,7 @@ bar_widgets = [
     ),
     sep(bg=color.get("bg", "#ff0000"), pad=1),
     widget.Net(
-        prefix="M",
+        prefix="k",
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
         padding=10,

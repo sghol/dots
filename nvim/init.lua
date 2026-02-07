@@ -71,26 +71,40 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- file specific configs
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "javascript", "typescript", "html", "css" },
+	callback = function()
+		vim.bo.tabstop = 2
+		vim.bo.shiftwidth = 2
+		vim.bo.softtabstop = 2
+	end,
+})
+
 -- code formatting
 local function format_file()
 	local ft = vim.bo.filetype
+	local formatters = {
+		python = "black --quiet",
+		lua = "stylua",
+		go = "go fmt",
+		sql = "pg_format -f 2 -u 2 -o",
+		javascript = "prettier --write",
+		typescript = "prettier --write",
+		html = "prettier --write",
+		json = "prettier --write",
+		css = "prettier --write",
+		sh = "shfmt -i 2 -ci -s -w",
+		bash = "shfmt -i 2 -ci -s -w",
+	}
 
-	if ft == "python" then
-		vim.cmd("silent !black --quiet %")
-	elseif ft == "lua" then
-		vim.cmd("silent !stylua %")
-	elseif ft == "go" then
-		vim.cmd("silent !go fmt %")
-	elseif ft == "javascript" then
-		vim.cmd("silent !prettier --write %")
-	elseif ft == "html" then
-		vim.cmd("silent !prettier --write %")
-	elseif ft == "css" then
-		vim.cmd("silent !prettier --write %")
+	local fmt = formatters[ft]
+	if fmt then
+		vim.cmd("silent !" .. fmt .. " %")
+		vim.cmd("edit!")
 	else
 		vim.notify("No formatter for filetype: " .. ft, vim.log.levels.ERROR)
 	end
-	vim.cmd("edit!")
 end
 
 -- Spell check
@@ -118,6 +132,7 @@ vim.keymap.set("i", "jk", "<Esc>", opts)
 
 -- Buffer
 vim.keymap.set("n", "<Leader>e", ":Hex<CR>", opts)
+vim.keymap.set("n", "<Leader>E", ":Exp<CR>", opts)
 vim.keymap.set("n", "<Leader>q", ":bd!<CR>", opts)
 vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
 vim.keymap.set("n", "<Leader>b", ":buffers<CR>", opts)
