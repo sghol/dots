@@ -184,3 +184,24 @@ vim.keymap.set("n", "n", "nzzzv", opts)
 vim.keymap.set("n", "N", "Nzzzv", opts)
 vim.keymap.set("n", "*", "*zzzv", opts)
 vim.keymap.set("n", "#", "#zzzv", opts)
+
+-- ------------------
+-- Load plugins
+-- ------------------
+-- vim-visual-multi loaded automatically
+-- mini.pick
+require("mini.pick").setup()
+vim.keymap.set("n", "<leader>ff", ":Pick files<CR>")
+vim.keymap.set("n", "<leader>fb", ":Pick buffers<CR>")
+vim.keymap.set("n", "<leader>fg", ":Pick grep_live<CR>")
+
+-- lsp
+local lspconfig = require("lspconfig")
+vim.lsp.enable({ "pyright" })
+vim.lsp.enable({ "gopls" })
+vim.lsp.enable({ "ts_ls" })
+vim.diagnostic.config({ virtual_text = true })
+
+-- cursor/scroll animation
+require("smear_cursor").setup()
+require("neoscroll").setup()

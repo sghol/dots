@@ -117,11 +117,11 @@ hi("Added", { link = "Defualt" })
 hi("Changed", { link = "Defualt" })
 hi("Conceal", { link = "Defualt" })
 hi("Constant", { link = "Defualt" })
-hi("DiagnosticError", { link = "Defualt" })
+hi("DiagnosticError", { link = "Critical" })
 hi("DiagnosticHint", { link = "Defualt" })
 hi("DiagnosticInfo", { link = "Defualt" })
 hi("DiagnosticOk", { link = "Defualt" })
-hi("DiagnosticWarn", { link = "Defualt" })
+hi("DiagnosticWarn", { link = "Mute" })
 hi("Function", { link = "Defualt" })
 hi("Identifier", { link = "Defualt" })
 hi("ModeMsg", { link = "Defualt" })
@@ -137,3 +137,14 @@ hi("Type", { link = "Defualt" })
 hi("WarningMsg", { link = "Defualt" })
 hi("WinBar", { link = "Defualt" })
 hi("WinBarNC", { link = "Defualt" })
+
+-- vim-visual-multi
+hi("VM_Mono", { fg = fg, bg = red }) -- Main cursor
+hi("VM_Cursor", { link = "Select" }) -- Additional cursors
+hi("VM_Extend", { link = "Select" }) -- Extend mode
+hi("VM_Insert", { link = "Select" }) -- Insert mode
+
+-- mini.pick
+hi("MiniPickNormal", { link = "Normal" })
+hi("MiniPickMatchRanges", { link = "Critical" })
+hi("MiniPickMatchCurrent", { link = "Select" })
