@@ -53,6 +53,7 @@ vim.opt.splitright = true
 -- color
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
+vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#FCE094", fg="#07080D" })
 
 -- stop treesitter
 vim.api.nvim_create_autocmd("BufEnter", {
