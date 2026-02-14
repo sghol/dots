@@ -53,7 +53,7 @@ vim.opt.splitright = true
 -- color
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
-vim.cmd.colorscheme("darkshade")
+
 -- stop treesitter
 vim.api.nvim_create_autocmd("BufEnter", {
 	callback = function()
@@ -188,6 +188,9 @@ vim.keymap.set("n", "#", "#zzzv", opts)
 -- ------------------
 -- Load plugins
 -- ------------------
+-- custom path for plugins
+vim.opt.packpath:prepend(vim.fn.expand("~/.local/share/nvim/pack/plugins/"))
+
 -- vim-visual-multi loaded automatically
 -- mini.pick
 require("mini.pick").setup()
@@ -202,6 +205,4 @@ vim.lsp.enable({ "gopls" })
 vim.lsp.enable({ "ts_ls" })
 vim.diagnostic.config({ virtual_text = true })
 
--- cursor/scroll animation
-require("smear_cursor").setup()
 require("neoscroll").setup()
