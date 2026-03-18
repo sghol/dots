@@ -50,8 +50,10 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GOPROXY=https://goproxy.io
 export GOSUMDB=off
 
-# npm
-export NPM_CONFIG_REGISTRY=https://mirror.chabokan.net/repository/npm-proxy/
+# NPM
+export NPM_CONFIG_REGISTRY=https://package-mirror.liara.ir/repository/npm/
+export PIP_INDEX_URL=https://mirror.chabokan.net/repository/pypi-proxy/simple
+export COMPOSER_MIRROR_URL=https://mirror.chabokan.net/repository/composer-proxy/
 export NPM_CONFIG_PREFIX=$XDG_DATA_HOME/npm/global
 
 # pip
