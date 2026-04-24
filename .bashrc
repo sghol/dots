@@ -41,6 +41,8 @@ export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$XDG_DATA_HOME/nvim/mason/bin:$HOM
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CURRENT_DESKTOP=qtile
+export XDG_SESSION_DESKTOP=qtile
   
 # GO Lang
 export GOPATH=$XDG_DATA_HOME/go
