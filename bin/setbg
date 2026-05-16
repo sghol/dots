@@ -31,4 +31,6 @@ xwallpaper --stretch "$next_wallpaper"
 # Save the new index
 echo "$current_index" > "$INDEX_FILE"
 
+
+notify-send "Set wallpaper: $next_wallpaper"
 echo "Set wallpaper: $next_wallpaper"

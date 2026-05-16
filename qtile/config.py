@@ -2,10 +2,9 @@ from subprocess import Popen
 import os
 
 from libqtile import bar, hook, layout, qtile, widget
-from libqtile.config import Click, Drag, DropDown, Group, Key, Match, ScratchPad, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile import hook
-
 
 # ---------------
 #   Bindings
@@ -134,7 +133,7 @@ color = {
 #     GROUP
 # ------------------
 # keyword arguments for `python` scratchpad
-groups = [Group( name=name, label=name) for name in ["1", "2", "3", "9", "0"]]
+groups = [Group(name=name, label=name) for name in ["1", "2", "3", "9", "0"]]
 
 
 # ------------------
@@ -174,8 +173,8 @@ floating_layout = layout.Floating(
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
         Match(title="Blueman-manager"),  # GPG key password entry
-        Match(title="flet"),  
-        Match(title="stab"),  
+        Match(title="flet"),
+        Match(title="stab"),
     ],
     **layout_config,
 )
@@ -220,25 +219,24 @@ bar_widgets = [
         foreground=color.get("fg", "#ff0000"),
     ),
     widget.Spacer(),
-
     widget.CheckUpdates(
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
-        colour_have_updates = color.get("fg", "#ff0000"),
-        colour_no_updates = color.get("fg", "#ff0000"),
+        colour_have_updates=color.get("fg", "#ff0000"),
+        colour_no_updates=color.get("fg", "#ff0000"),
         no_update_string="",
     ),
     sep(bg=color.get("bg", "#ff0000"), pad=1),
     widget.Pomodoro(
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
-        color_active = color.get("active", "#ff0000"),
+        color_active=color.get("active", "#ff0000"),
         color_inactive=color.get("fg", "#ff0000"),
-        color_break = color.get("active", "#ff0000"),
-        length_pomodori = 50,
-        length_short_break = 10,
-        length_long_break = 0,
-        prefix_inactive = "POMO",
+        color_break=color.get("active", "#ff0000"),
+        length_pomodori=50,
+        length_short_break=10,
+        length_long_break=0,
+        prefix_inactive="POMO",
     ),
     sep(bg=color.get("bg", "#ff0000"), pad=1),
     widget.Wlan(
@@ -276,7 +274,9 @@ bar_widgets = [
         padding=10,
     ),
     sep(bg=color.get("bg", "#ff0000"), pad=1),
-    widget.Systray(),
+    widget.Systray(
+        background=color.get("alt_bg", "#ff0000"),
+    ),
 ]
 
 # Bars
@@ -326,8 +326,7 @@ def float_change():
 def float_centerize(window):
     window.center()
 
+
 @hook.subscribe.startup_once
 def autostart():
     Popen([AUTOSTART_PATH])
-    # qtile.spawn(f"{TERMINAL} -e tmux")
-    # qtile.spawn(f"{BROWSER}")

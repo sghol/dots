@@ -30,3 +30,5 @@ xset r rate 200 35 &
 # do not turn off Monitor
 xset s off &
 xset -dpms &
+
+picom -b 
