@@ -31,4 +31,3 @@ xset r rate 200 35 &
 xset s off &
 xset -dpms &
 
-picom -b 

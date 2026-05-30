@@ -51,9 +51,14 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 -- color
+vim.cmd("syntax off")
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#FCE094", fg = "#07080D" })
+
+-- treesitter
+vim.treesitter.stop()
+
 
 -- ----------------------
 -- COMMANDS / FUNCTIONS

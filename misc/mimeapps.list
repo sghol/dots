@@ -1,6 +1,6 @@
 [Default Applications]
 inode/directory=thunar.desktop
-application/pdf=org.pwmt.zathura.desktop
+application/pdf=mupdf.desktop
 application/xhtml+xml=firefox.desktop
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
@@ -15,7 +15,6 @@ x-scheme-handler/oblivion=oblivion-desktop.desktop
 application/x-zerosize=libreoffice-writer.desktop
 
 [Added Associations]
-application/pdf=firefox.desktop;
 text/plain=firefox.desktop;org.gnome.gedit.desktop;emacs.desktop;nvim.desktop;
 video/x-sgi-movie=vlc.desktop;
 x-scheme-handler/tonsite=org.telegram.desktop.desktop;userapp-Telegram Desktop-5O2YT2.desktop;
