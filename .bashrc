@@ -35,7 +35,13 @@ export TERMINAL="st"
 export TERM="xterm-256color"
 
 # Path
-export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$XDG_DATA_HOME/nvim/mason/bin:$HOME/.cargo/bin:$XDG_CONFIG_HOME/emacs/bin:$XDG_DATA_HOME/uv/tools:$XDG_DATA_HOME/npm/global/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
+export PATH="$PATH:$XDG_DATA_HOME/nvim/mason/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$XDG_CONFIG_HOME/emacs/bin"
+export PATH="$PATH:$XDG_DATA_HOME/uv/tools"
+export PATH="$PATH:$XDG_DATA_HOME/npm/global/bin"
+export PATH="$PATH:$GOPATH/bin"
 
 # XDG
 export XDG_CONFIG_HOME=$HOME/.config

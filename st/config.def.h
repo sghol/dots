@@ -93,9 +93,6 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
-/* bg opacity */
-float alpha = 0.8;
-
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
@@ -231,80 +228,7 @@ static Shortcut shortcuts[] = {
  * If you want keys other than the X11 function keys (0xFD00 - 0xFFFF)
  * to be mapped below, add them to this array.
  */
-static KeySym mappedkeys[] = {
-	XK_space,
-	XK_m,
-	XK_i,
-	XK_A,
-	XK_B,
-	XK_C,
-	XK_D,
-	XK_E,
-	XK_F,
-	XK_G,
-	XK_H,
-	XK_I,
-	XK_K,
-	XK_J,
-	XK_L,
-	XK_M,
-	XK_N,
-	XK_O,
-	XK_P,
-	XK_Q,
-	XK_R,
-	XK_S,
-	XK_T,
-	XK_U,
-	XK_V,
-	XK_W,
-	XK_X,
-	XK_Y,
-	XK_Z,
-	XK_Z,
-	XK_0,
-	XK_1,
-	XK_2,
-	XK_3,
-	XK_4,
-	XK_5,
-	XK_6,
-	XK_7,
-	XK_8,
-	XK_9,
-	XK_exclam,
-	XK_quotedbl,
-	XK_numbersign,
-	XK_dollar,
-	XK_percent,
-	XK_ampersand,
-	XK_apostrophe,
-	XK_parenleft,
-	XK_parenright,
-	XK_asterisk,
-	XK_plus,
-	XK_comma,
-	XK_minus,
-	XK_period,
-	XK_slash,
-	XK_colon,
-	XK_semicolon,
-	XK_less,
-	XK_equal,
-	XK_greater,
-	XK_question,
-	XK_at,
-	XK_bracketleft,
-	XK_backslash,
-	XK_bracketright,
-	XK_asciicircum,
-	XK_underscore,
-	XK_grave,
-	XK_braceleft,
-	XK_bar,
-	XK_braceright,
-	XK_asciitilde,
-};
+static KeySym mappedkeys[] = { -1 };
 
 /*
  * State bits to ignore when matching key or button events.  By default,
@@ -527,23 +451,6 @@ static Key key[] = {
 	{ XK_F33,           XK_NO_MOD,      "\033[20;5~",    0,    0},
 	{ XK_F34,           XK_NO_MOD,      "\033[21;5~",    0,    0},
 	{ XK_F35,           XK_NO_MOD,      "\033[23;5~",    0,    0},
-    { XK_H,             ControlMask|ShiftMask,          "\033[72;6u", 0,  0},
-    { XK_L,             ControlMask|ShiftMask,          "\033[76;6u", 0,  0},
-    { XK_K,             ControlMask|ShiftMask,          "\035[75;6u", 0,  0},
-	{ XK_J,             ControlMask|ShiftMask,          "\033[74;6u", 0,  0},
-    { XK_period,        ControlMask,                    "\033[46;5u",  0,  0},
-	{ XK_period,        ControlMask|ShiftMask,          "\033[46;6u",  0,  0},
-	{ XK_period,        Mod1Mask|ControlMask,           "\033[46;7u",  0,  0},
-	{ XK_period,        Mod1Mask|ControlMask|ShiftMask, "\033[46;8u",  0,  0},
-	{ XK_period,        Mod1Mask|ShiftMask,             "\033[46;4u",  0,  0},
-	{ XK_Return,        ControlMask,                    "\033[13;5u",  0,  0},
-	{ XK_Return,        ControlMask|ShiftMask,          "\033[13;6u",  0,  0},
-	{ XK_Return,        Mod1Mask,                       "\033[13;3u",  0,  0},
-	{ XK_Return,        Mod1Mask|ControlMask,           "\033[13;7u",  0,  0},
-	{ XK_Return,        Mod1Mask|ControlMask|ShiftMask, "\033[13;8u",  0,  0},
-	{ XK_Return,        Mod1Mask|ShiftMask,             "\033[13;4u",  0,  0},
-	{ XK_Return,        ShiftMask,                      "\033[13;2u",  0,  0},
-
 };
 
 /*

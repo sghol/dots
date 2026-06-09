@@ -6,18 +6,10 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
 
--- number line
-vim.opt.number = true
-vim.opt.relativenumber = true
-
 vim.opt.wrap = false
 vim.opt.guicursor = ""
 vim.g.netrw_banner = 0
-
-vim.opt.showmode = true
-vim.opt.cmdheight = 0
-vim.opt.statusline = "[%{toupper(mode())}]  %f  %m"
-vim.opt.laststatus = 0
+vim.opt.laststatus = 3
 
 -- scroll
 vim.opt.scrolloff = 8
@@ -39,9 +31,6 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-vim.opt.cindent = true
 
 -- Completion --
 vim.opt.completeopt = { "menuone", "noselect" }
@@ -51,14 +40,12 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 -- color
-vim.cmd("syntax off")
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#FCE094", fg = "#07080D" })
 
 -- treesitter
 vim.treesitter.stop()
-
 
 -- ----------------------
 -- COMMANDS / FUNCTIONS
@@ -120,7 +107,6 @@ end
 -- ------------------
 -- Keybindings
 -- ------------------
-
 -- Leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
@@ -186,9 +172,9 @@ require("mini.pick").setup()
 require("neoscroll").setup()
 
 -- mini pick
-vim.keymap.set("n", "<leader>ff", ":Pick files<CR>")
-vim.keymap.set("n", "<leader>fb", ":Pick buffers<CR>")
-vim.keymap.set("n", "<leader>fg", ":Pick grep_live<CR>")
+vim.keymap.set("n", "<leader>ff", ":Pick files<CR>", opts)
+vim.keymap.set("n", "<leader>fb", ":Pick buffers<CR>", opts)
+vim.keymap.set("n", "<leader>fg", ":Pick grep_live<CR>", opts)
 
 -- lsp
 vim.lsp.config("lua_ls", {

@@ -187,11 +187,6 @@ def sep(bg, pad=5):
     return widget.Sep(background=bg, padding=pad, linewidth=0)
 
 
-widget_defaults = dict(
-    font="Not Sans Mono",
-    fontsize=13,
-)
-extension_defaults = widget_defaults.copy()
 
 bar_widgets = [
     widget.GroupBox(
