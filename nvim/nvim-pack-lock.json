@@ -1,0 +1,28 @@
+{
+  "plugins": {
+    "mini.pick": {
+      "rev": "8905fe4b8fb6be80e1a940b905f17013ed27a006",
+      "src": "https://github.com/nvim-mini/mini.pick"
+    },
+    "mini.statusline": {
+      "rev": "7091f554d7d26b5d55f4c937634da53ba277a44a",
+      "src": "https://github.com/nvim-mini/mini.statusline"
+    },
+    "multiple-cursors.nvim": {
+      "rev": "eae76d4c5f7ede2d45746dc2affb5e7a139e4aa8",
+      "src": "https://github.com/brenton-leighton/multiple-cursors.nvim"
+    },
+    "neoscroll.nvim": {
+      "rev": "c8d29979cb0cb3a2437a8e0ae683fd82f340d3b8",
+      "src": "https://github.com/karb94/neoscroll.nvim"
+    },
+    "smear-cursor.nvim": {
+      "rev": "9e9378d6ee34bb3782e0e8c63d9ec8ca618b479b",
+      "src": "https://github.com/sphamba/smear-cursor.nvim"
+    },
+    "vim-visual-multi": {
+      "rev": "a6975e7c1ee157615bbc80fc25e4392f71c344d4",
+      "src": "https://github.com/mg979/vim-visual-multi"
+    }
+  }
+}

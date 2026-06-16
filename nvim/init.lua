@@ -118,6 +118,7 @@ vim.keymap.set("i", "jk", "<Esc>", opts)
 -- Buffer
 vim.keymap.set("n", "<Leader>e", ":Hex<CR>", opts)
 vim.keymap.set("n", "<Leader>E", ":Exp<CR>", opts)
+vim.keymap.set("n", "<Leader>L", ":Vex<CR>", opts)
 vim.keymap.set("n", "<Leader>q", ":bd!<CR>", opts)
 vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
 vim.keymap.set("n", "<Leader>b", ":buffers<CR>", opts)
@@ -160,34 +161,61 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
 vim.keymap.set("n", "n", "nzzzv", opts)
 vim.keymap.set("n", "N", "Nzzzv", opts)
 
--- ------------------
--- Load plugins
--- ------------------
--- custom path for plugins
-vim.opt.packpath:prepend(vim.fn.expand("~/.local/share/nvim/pack/plugins/"))
-
--- plugins load
--- vim-visual-multi loaded automatically
-require("mini.pick").setup()
-require("neoscroll").setup()
-
 -- mini pick
 vim.keymap.set("n", "<leader>ff", ":Pick files<CR>", opts)
 vim.keymap.set("n", "<leader>fb", ":Pick buffers<CR>", opts)
 vim.keymap.set("n", "<leader>fg", ":Pick grep_live<CR>", opts)
 
--- lsp
-vim.lsp.config("lua_ls", {
-	settings = {
-		Lua = {
-			runtime = { version = "LuaJIT" },
-			diagnostics = { globals = { "vim" } },
-			workspace = {
-				library = vim.api.nvim_get_runtime_file("", true),
-			},
-			telemetry = { enable = false },
-		},
-	},
+-- ------------------
+-- Plugins
+-- ------------------
+-- Install packages
+vim.pack.add({
+	{ src = "https://github.com/nvim-mini/mini.pick" },
+	{ src = "https://github.com/mg979/vim-visual-multi" },
+	{ src = "https://github.com/karb94/neoscroll.nvim" },
+	{ src = "https://github.com/sphamba/smear-cursor.nvim" },
+	{ src = "https://github.com/nvim-mini/mini.statusline" },
 })
+
+-- Load plugins
+require("mini.pick").setup()
+require("mini.statusline").setup()
+require("neoscroll").setup()
+require("smear_cursor").setup()
+require("mini.pick").setup()
+
+-- ------------------
+-- LSP
+-- ------------------
+-- Lua
+vim.lsp.config["lua_ls"] = {
+	cmd = { "lua-language-server" },
+	filetypes = { "lua" },
+	root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
+}
+
+-- Python
+vim.lsp.config["pyright"] = {
+	cmd = { "pyright-langserver", "--stdio" },
+	filetypes = { "python" },
+	root_markers = { "pyproject.toml", "setup.py", "requirements.txt" },
+}
+
+-- Go
+vim.lsp.config["gopls"] = {
+	cmd = { "gopls" },
+	filetypes = { "go", "gomod", "gowork", "gotmpl" },
+	root_markers = { "go.mod", "go.work" },
+}
+
+-- Javascipt / TypeScript
+vim.lsp.config["ts_ls"] = {
+	cmd = { "typescript-language-server", "--stdio" },
+	filetypes = { "javascript", "typescript" },
+	root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
+}
+
+-- lsp enable
 vim.lsp.enable({ "lua_ls", "pyright", "gopls", "ts_ls" })
 vim.diagnostic.config({ virtual_text = true })

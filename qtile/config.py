@@ -183,9 +183,8 @@ floating_layout = layout.Floating(
 # ---------------------
 #    SCREEN WIDGETS
 # ---------------------
-def sep(bg, pad=5):
+def sep(bg=color.get("bg"), pad=1):
     return widget.Sep(background=bg, padding=pad, linewidth=0)
-
 
 
 bar_widgets = [
@@ -199,13 +198,13 @@ bar_widgets = [
         padding_x=5,
         padding_y=2,
     ),
-    sep(bg=color.get("bg", "#ff0000"), pad=1),
+    sep(),
     widget.CurrentLayout(
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
         padding=10,
     ),
-    sep(bg=color.get("bg", "#ff0000"), pad=1),
+    sep(),
     widget.WindowCount(
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
@@ -221,26 +220,26 @@ bar_widgets = [
         colour_no_updates=color.get("fg", "#ff0000"),
         no_update_string="",
     ),
-    sep(bg=color.get("bg", "#ff0000"), pad=1),
+    sep(),
     widget.Pomodoro(
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
         color_active=color.get("active", "#ff0000"),
         color_inactive=color.get("fg", "#ff0000"),
         color_break=color.get("active", "#ff0000"),
-        length_pomodori=50,
-        length_short_break=10,
-        length_long_break=0,
+        length_pomodori=55,
+        length_short_break=5,
+        length_long_break=5,
         prefix_inactive="POMO",
     ),
-    sep(bg=color.get("bg", "#ff0000"), pad=1),
+    sep(),
     widget.Wlan(
         interface="wlan0",
         format="{essid}",
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
     ),
-    sep(bg=color.get("bg", "#ff0000"), pad=1),
+    sep(bg=color.get("bg", "#ff0000"), pad=0),
     widget.Net(
         prefix="k",
         background=color.get("alt_bg", "#ff0000"),
@@ -248,27 +247,27 @@ bar_widgets = [
         padding=10,
         format="{down:1.2f}{down_suffix} ↓↑ {up:1.2f}{up_suffix}",
     ),
-    sep(bg=color.get("bg", "#ff0000"), pad=1),
+    sep(),
     widget.KeyboardLayout(
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
         configured_keyboards=["us", "ir"],
         padding=10,
     ),
-    sep(bg=color.get("bg", "#ff0000"), pad=1),
+    sep(),
     widget.Volume(
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
         padding=10,
     ),
-    sep(bg=color.get("bg", "#ff0000"), pad=1),
+    sep(),
     widget.Clock(
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
-        format="%H:%M",
+        format="%m-%d | %H:%M",
         padding=10,
     ),
-    sep(bg=color.get("bg", "#ff0000"), pad=1),
+    sep(),
     widget.Systray(
         background=color.get("alt_bg", "#ff0000"),
     ),
