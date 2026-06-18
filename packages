@@ -174,7 +174,6 @@ iptables
 iputils
 iso-codes
 iwd
-jack2
 jansson
 jasper
 jbig2dec
@@ -489,7 +488,6 @@ nspr
 nss
 nsxiv
 obs-studio
-obsidian
 ocl-icd
 openal
 opencore-amr
@@ -537,9 +535,6 @@ portsmf
 procps-ng
 protobuf
 psmisc
-pulseaudio
-pulseaudio-alsa
-pulseaudio-bluetooth
 python
 python-cairo
 python-cairocffi
@@ -645,7 +640,6 @@ webrtc-audio-processing-1
 wget
 which
 wireless_tools
-wlroots0.17
 wpa_supplicant
 wxwidgets-common
 wxwidgets-gtk3

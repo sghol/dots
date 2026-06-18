@@ -7,36 +7,31 @@
 
 # Update system
 # --------------
-sudo pacman -Syu
-#sudo pacman -S --needed --noconfirm $(cat packages)
-
-
-# --------------
-# BASIC CONFIG
-# --------------
-cd ~
-mkdir dwl dox pix vid mnt opt rpo 
-mkdir ~/.local/bin
-mkdir ~/.local/share/fonts
-mkdir ~/.local/share/icons
-mkdir ~/.local/share/themes
-
-# --------------
-# SERVICES
-# --------------
-
-
-# -----------------
-# BUILD DWM and ST
-# -----------------
-cd ~/rpo/dots/st
-sudo make clean install
-
-# --------------
-# SYMLINKS
-# --------------
-ln -s --force ~/rpo/dots/nvim/ ~/.config/
-ln -s --force ~/rpo/dots/tmux/ ~/.config/
+# sudo pacman -Syu
+# #sudo pacman -S --needed --noconfirm $(cat packages)
+#
+#
+# # --------------
+# # BASIC CONFIG
+# # --------------
+# cd ~
+# mkdir dow dox pix vid mnt opt rpo 
+# mkdir ~/.local/bin
+# mkdir ~/.local/share/fonts
+# mkdir ~/.local/share/icons
+# mkdir ~/.local/share/themes
+#
+# # --------------
+# # SERVICES
+# # --------------
+#
+#
+#
+# # --------------
+# # SYMLINKS
+# # --------------
+# ln -s --force ~/rpo/dots/nvim/ ~/.config/
+# ln -s --force ~/rpo/dots/tmux/ ~/.config/
 ln -s --force ~/rpo/dots/qtile/ ~/.config/
 ln -s --force ~/rpo/dots/.xinitrc ~/
 ln -s --force ~/rpo/dots/.bashrc ~/
@@ -49,11 +44,10 @@ ln -s --force ~/rpo/dots/misc/fontconfig/ ~/.config/
 ln -s --force ~/rpo/dots/misc/gtk-3.0/ ~/.config/
 ln -s --force ~/rpo/dots/misc/picom/ ~/.config/
 
-Ln -s --force ~/rpo/dots/bin/setbg ~/.local/bin/
+ln -s --force ~/rpo/dots/bin/setbg ~/.local/bin/
 ln -s --force ~/rpo/dots/bin/shot ~/.local/bin/
 ln -s --force ~/rpo/dots/bin/tmuxer ~/.local/bin/
 ln -s --force ~/rpo/dots/bin/autostart ~/.local/bin/
 ln -s --force ~/rpo/dots/bin/launcher ~/.local/bin/
 
 
-ln -s --force ~/rpo/dots/misc/Orchis-Dark/ ~/.local/share/themes/

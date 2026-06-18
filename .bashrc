@@ -21,7 +21,7 @@ alias open='xdg-open'
 alias iv='nsxiv'
 alias record='ffmpeg -framerate 60 -f x11grab -i $DISPLAY -f pulse -i default '
 alias play='mpv'
-alias shot='scrot -d 1 ~/pix/shots/%Y-%m-%d-%T-screenshot.png; notify-send "Screenshot" "Screenshot saved"'
+alias sc='scrot -d 1 ~/pix/screenshots/%Y-%m-%d-%T-screenshot.png; notify-send "Screenshot" "Screenshot saved"'
 
 # ---------
 # EXPORTS

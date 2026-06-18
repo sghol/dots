@@ -172,18 +172,18 @@ vim.keymap.set("n", "<leader>fg", ":Pick grep_live<CR>", opts)
 -- Install packages
 vim.pack.add({
 	{ src = "https://github.com/nvim-mini/mini.pick" },
+	{ src = "https://github.com/nvim-mini/mini.statusline" },
 	{ src = "https://github.com/mg979/vim-visual-multi" },
 	{ src = "https://github.com/karb94/neoscroll.nvim" },
 	{ src = "https://github.com/sphamba/smear-cursor.nvim" },
-	{ src = "https://github.com/nvim-mini/mini.statusline" },
 })
 
 -- Load plugins
 require("mini.pick").setup()
 require("mini.statusline").setup()
+require("mini.pick").setup()
 require("neoscroll").setup()
 require("smear_cursor").setup()
-require("mini.pick").setup()
 
 -- ------------------
 -- LSP

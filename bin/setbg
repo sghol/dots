@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-WALLPAPER_DIR="$HOME/pix/walls"
+WALLPAPER_DIR="$HOME/pix/wallpapers"
 
 if [[ ! -d "$WALLPAPER_DIR" ]]; then
     echo "Error: Wallpaper directory not found: $WALLPAPER_DIR"

@@ -3,6 +3,10 @@
 # Disable beep sound
 xset -b &
 
+# do not turn off Monitor
+xset s off &
+xset -dpms &
+
 # Persian Keyboard Layout
 setxkbmap -layout us,ir -option grp:alt_shift_toggle &
 
@@ -27,9 +31,6 @@ unclutter &
 # incerese speed of repeated key.
 xset r rate 200 35 &
 
-# do not turn off Monitor
-xset s off &
-xset -dpms &
 
 # composite 
 picom -b
