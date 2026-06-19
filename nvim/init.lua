@@ -43,6 +43,7 @@ vim.opt.splitright = true
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#FCE094", fg = "#07080D" })
+vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
 
 -- treesitter
 vim.treesitter.stop()
@@ -116,8 +117,8 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set("i", "jk", "<Esc>", opts)
 
 -- Buffer
-vim.keymap.set("n", "<Leader>e", ":Hex<CR>", opts)
-vim.keymap.set("n", "<Leader>E", ":Exp<CR>", opts)
+vim.keymap.set("n", "<Leader>E", ":Hex<CR>", opts)
+vim.keymap.set("n", "<Leader>e", ":Exp<CR>", opts)
 vim.keymap.set("n", "<Leader>l", ":Vex<CR>", opts)
 vim.keymap.set("n", "<Leader>q", ":bd!<CR>", opts)
 vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
@@ -172,7 +173,6 @@ vim.keymap.set("n", "<leader>fg", ":Pick grep_live<CR>", opts)
 -- Install packages
 vim.pack.add({
 	{ src = "https://github.com/nvim-mini/mini.pick" },
-	{ src = "https://github.com/nvim-mini/mini.statusline" },
 	{ src = "https://github.com/mg979/vim-visual-multi" },
 	{ src = "https://github.com/karb94/neoscroll.nvim" },
 	{ src = "https://github.com/sphamba/smear-cursor.nvim" },
@@ -180,7 +180,6 @@ vim.pack.add({
 
 -- Load plugins
 require("mini.pick").setup()
-require("mini.statusline").setup()
 require("mini.pick").setup()
 require("neoscroll").setup()
 require("smear_cursor").setup()
