@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Import graphical environment into systemd user manager
+systemctl --user import-environment DISPLAY XAUTHORITY
+
 # incerese speed of repeated key.
 xset r rate 200 35 &
 
