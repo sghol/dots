@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 
 bg="#000000"
-fg="#9B9EA4"
-sel="#B4F6C0"
+fg="#cccccc"
+sel="#ffffff"
 dmenu_run -i -p "Apps:: " -nb $bg -nf $fg -sb $sel -sf $bg

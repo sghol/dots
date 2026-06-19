@@ -118,7 +118,7 @@ vim.keymap.set("i", "jk", "<Esc>", opts)
 -- Buffer
 vim.keymap.set("n", "<Leader>e", ":Hex<CR>", opts)
 vim.keymap.set("n", "<Leader>E", ":Exp<CR>", opts)
-vim.keymap.set("n", "<Leader>L", ":Vex<CR>", opts)
+vim.keymap.set("n", "<Leader>l", ":Vex<CR>", opts)
 vim.keymap.set("n", "<Leader>q", ":bd!<CR>", opts)
 vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
 vim.keymap.set("n", "<Leader>b", ":buffers<CR>", opts)

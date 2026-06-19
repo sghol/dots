@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# incerese speed of repeated key.
+xset r rate 200 35 &
+
 # Disable beep sound
 xset -b &
 
@@ -27,10 +30,6 @@ blueman-applet &
 
 # Hide mouse pointer when not used 
 unclutter &
-
-# incerese speed of repeated key.
-xset r rate 200 35 &
-
 
 # composite 
 picom -b

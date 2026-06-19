@@ -121,12 +121,12 @@ mouse = [
 
 color = {
     "bg": "#000000",
-    "alt_bg": "#2c2e33",
-    "fg": "#E0E2EA",
-    "active": "#EEF1F8",
-    "inactive": "#9b9ea4",
-    "primary": "#b4f6c0",
-    "secondary": "#FCE094",
+    "alt_bg": "#333333",
+    "fg": "#ffffff",
+    "active": "#ffffff",
+    "inactive": "#aaaaaa",
+    "primary": "#ffffff",
+    "secondary": "#aaaaaa",
 }
 
 # ------------------
