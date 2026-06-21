@@ -183,7 +183,7 @@ floating_layout = layout.Floating(
 # ---------------------
 #    SCREEN WIDGETS
 # ---------------------
-def sep(bg=color.get("bg"), pad=1):
+def sep(bg=color.get("bg"), pad=2):
     return widget.Sep(background=bg, padding=pad, linewidth=0)
 
 
@@ -195,14 +195,11 @@ bar_widgets = [
         inactive=color.get("inactive", "#ff0000"),
         this_current_screen_border=color.get("primary", "#ff0000"),
         block_highlight_text_color=color.get("bg", "#ff0000"),
-        padding_x=5,
-        padding_y=2,
     ),
     sep(),
     widget.CurrentLayout(
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
-        padding=10,
     ),
     sep(),
     widget.WindowCount(
@@ -231,6 +228,7 @@ bar_widgets = [
         length_short_break=5,
         length_long_break=5,
         prefix_inactive="POMO",
+        padding=10,
     ),
     sep(),
     widget.Wlan(
@@ -244,8 +242,8 @@ bar_widgets = [
         prefix="k",
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
-        padding=10,
         format="{down:1.2f}{down_suffix} ↓↑ {up:1.2f}{up_suffix}",
+        padding_x=20,
     ),
     sep(),
     widget.KeyboardLayout(
@@ -264,7 +262,7 @@ bar_widgets = [
     widget.Clock(
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
-        format="%m-%d | %H:%M",
+        format="%A %m-%d | %H:%M",
         padding=10,
     ),
     sep(),
@@ -281,8 +279,6 @@ bar = bar.Bar(
     border_color=color["bg"],
     background=color.get("bg"),
     size=20,
-    opacity=1,
-    margin=[0, 0, 0, 0],
 )
 
 # Screens
