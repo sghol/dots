@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-selected=$(find ~/rpo ~/rpo/lms -maxdepth 1 -mindepth 1 -type d | fzf) || exit 0
+selected=$(find ~/dev ~/dev/lms -maxdepth 1 -mindepth 1 -type d | fzf) || exit 0
 selected_name=$(basename "$selected" | tr . _)
 
 if [ -n "$TMUX" ]; then

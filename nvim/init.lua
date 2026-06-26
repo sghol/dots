@@ -31,6 +31,7 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
+vim.opt.autoindent = true
 
 -- Completion --
 vim.opt.completeopt = { "menuone", "noselect" }
@@ -50,56 +51,58 @@ vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
 -- ----------------------
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
-		vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 150 })
-	end,
+    callback = function()
+        vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 150 })
+    end,
 })
 
 -- file specific configs
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "javascript", "typescript", "html", "css" },
-	callback = function()
-		vim.bo.tabstop = 2
-		vim.bo.shiftwidth = 2
-		vim.bo.softtabstop = 2
-	end,
+    pattern = { "javascript", "typescript", "html", "css" },
+    callback = function()
+        vim.bo.tabstop = 2
+        vim.bo.shiftwidth = 2
+        vim.bo.softtabstop = 2
+    end,
 })
 
 -- code formatting
 local function format_file()
-	local ft = vim.bo.filetype
-	local formatters = {
-		python = "black --quiet",
-		lua = "stylua",
-		go = "go fmt",
-		sql = "pg_format -f 2 -u 2 -o",
-		javascript = "prettier --write",
-		typescript = "prettier --write",
-		html = "prettier --write",
-		json = "prettier --write",
-		css = "prettier --write",
-		sh = "shfmt -i 2 -ci -s -w",
-		bash = "shfmt -i 2 -ci -s -w",
-	}
+    -- if lsp support fomratting
+    vim.lsp.buf.format()
 
-	local fmt = formatters[ft]
-	if fmt then
-		vim.cmd("silent !" .. fmt .. " %")
-		vim.cmd("edit!")
-	else
-		vim.notify("No formatter for filetype: " .. ft, vim.log.levels.ERROR)
-	end
+    -- use cli tools to format the file
+    local ft = vim.bo.filetype
+    local formatters = {
+        python = "black --quiet",
+        -- lua = "stylua",
+        go = "go fmt",
+        sql = "pg_format -f 2 -u 2 -o",
+        javascript = "prettier --write",
+        typescript = "prettier --write",
+        html = "prettier --write",
+        json = "prettier --write",
+        css = "prettier --write",
+        sh = "shfmt -i 2 -ci -s -w",
+        bash = "shfmt -i 2 -ci -s -w",
+    }
+
+    local fmt = formatters[ft]
+    if fmt then
+        vim.cmd("silent !" .. fmt .. " %")
+        vim.cmd("edit!")
+    end
 end
 
 -- Spell check
 local function spell_check()
-	vim.opt.spell = not vim.o.spell
-	if vim.o.spell then
-		vim.opt.spelllang = "en_us"
-		vim.notify("Spell check ON", vim.log.levels.INFO)
-	else
-		vim.notify("Spell check OFF", vim.log.levels.INFO)
-	end
+    vim.opt.spell = not vim.o.spell
+    if vim.o.spell then
+        vim.opt.spelllang = "en_us"
+        vim.notify("Spell check ON", vim.log.levels.INFO)
+    else
+        vim.notify("Spell check OFF", vim.log.levels.INFO)
+    end
 end
 
 -- ------------------
@@ -170,10 +173,10 @@ vim.keymap.set("n", "<leader>fg", ":Pick grep_live<CR>", opts)
 -- ------------------
 -- Install packages
 vim.pack.add({
-	{ src = "https://github.com/nvim-mini/mini.pick" },
-	{ src = "https://github.com/mg979/vim-visual-multi" },
-	{ src = "https://github.com/karb94/neoscroll.nvim" },
-	{ src = "https://github.com/sphamba/smear-cursor.nvim" },
+    "https://github.com/nvim-mini/mini.pick",
+    "https://github.com/mg979/vim-visual-multi",
+    "https://github.com/karb94/neoscroll.nvim",
+    "https://github.com/sphamba/smear-cursor.nvim",
 })
 
 -- Load plugins
@@ -187,32 +190,45 @@ require("smear_cursor").setup()
 -- ------------------
 -- Lua
 vim.lsp.config["lua_ls"] = {
-	cmd = { "lua-language-server" },
-	filetypes = { "lua" },
-	root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
+    cmd = { "lua-language-server" },
+    filetypes = { "lua" },
+    root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
 }
 
 -- Python
 vim.lsp.config["pyright"] = {
-	cmd = { "pyright-langserver", "--stdio" },
-	filetypes = { "python" },
-	root_markers = { "pyproject.toml", "setup.py", "requirements.txt" },
+    cmd = { "pyright-langserver", "--stdio" },
+    filetypes = { "python" },
+    root_markers = { "pyproject.toml", "setup.py", "requirements.txt" },
 }
 
 -- Go
 vim.lsp.config["gopls"] = {
-	cmd = { "gopls" },
-	filetypes = { "go", "gomod", "gowork", "gotmpl" },
-	root_markers = { "go.mod", "go.work" },
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    root_markers = { "go.mod", "go.work" },
 }
 
 -- Javascipt / TypeScript
 vim.lsp.config["ts_ls"] = {
-	cmd = { "typescript-language-server", "--stdio" },
-	filetypes = { "javascript", "typescript" },
-	root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
+    cmd = { "typescript-language-server", "--stdio" },
+    filetypes = { "javascript", "typescript" },
+    root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
 }
 
+-- PHP
+vim.lsp.config["intelephense"] = {
+    cmd = { "intelephense", "--stdio" },
+    filetypes = { "php" },
+    root_markers = { ".git", "composer.json" },
+}
+
+-- C / C++
+vim.lsp.config["clangd"] = {
+    cmd = { "clangd" },
+    filetypes = { "c", "cpp" },
+    root_markers = { ".clangd", "compile_commands.json", "compile_flags.txt", ".git" },
+}
 -- lsp enable
-vim.lsp.enable({ "lua_ls", "pyright", "gopls", "ts_ls" })
+vim.lsp.enable({ "lua_ls", "pyright", "gopls", "ts_ls", "intelephense", "clangd" })
 vim.diagnostic.config({ virtual_text = true })

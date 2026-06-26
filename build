@@ -15,7 +15,7 @@
 # # BASIC CONFIG
 # # --------------
 # cd ~
-# mkdir dow dox pix vid mnt opt rpo 
+# mkdir dow dox pix vid mnt opt dev 
 # mkdir ~/.local/bin
 # mkdir ~/.local/share/fonts
 # mkdir ~/.local/share/icons
@@ -30,24 +30,24 @@
 # # --------------
 # # SYMLINKS
 # # --------------
-# ln -s --force ~/rpo/dots/nvim/ ~/.config/
-# ln -s --force ~/rpo/dots/tmux/ ~/.config/
-ln -s --force ~/rpo/dots/qtile/ ~/.config/
-ln -s --force ~/rpo/dots/.xinitrc ~/
-ln -s --force ~/rpo/dots/.bashrc ~/
-ln -s --force ~/rpo/dots/.gitconfig ~/
+ln -s --force ~/dev/dots/nvim/ ~/.config/
+ln -s --force ~/dev/dots/tmux/ ~/.config/
+ln -s --force ~/dev/dots/qtile/ ~/.config/
+ln -s --force ~/dev/dots/.xinitrc ~/
+ln -s --force ~/dev/dots/.bashrc ~/
+ln -s --force ~/dev/dots/.gitconfig ~/
 
-ln -s --force ~/rpo/dots/misc/dunst/ ~/.config/
-ln -s --force ~/rpo/dots/misc/mimeapps.list ~/.config/
-ln -s --force ~/rpo/dots/misc/user-dirs.dirs  ~/.config/
-ln -s --force ~/rpo/dots/misc/fontconfig/ ~/.config/
-ln -s --force ~/rpo/dots/misc/gtk-3.0/ ~/.config/
-ln -s --force ~/rpo/dots/misc/picom/ ~/.config/
+ln -s --force ~/dev/dots/misc/dunst/ ~/.config/
+ln -s --force ~/dev/dots/misc/mimeapps.list ~/.config/
+ln -s --force ~/dev/dots/misc/user-dirs.dirs  ~/.config/
+ln -s --force ~/dev/dots/misc/fontconfig/ ~/.config/
+ln -s --force ~/dev/dots/misc/gtk-3.0/ ~/.config/
+ln -s --force ~/dev/dots/misc/picom/ ~/.config/
 
-ln -s --force ~/rpo/dots/bin/setbg ~/.local/bin/
-ln -s --force ~/rpo/dots/bin/shot ~/.local/bin/
-ln -s --force ~/rpo/dots/bin/tmuxer ~/.local/bin/
-ln -s --force ~/rpo/dots/bin/autostart ~/.local/bin/
-ln -s --force ~/rpo/dots/bin/launcher ~/.local/bin/
+ln -s --force ~/dev/dots/bin/setbg ~/.local/bin/
+ln -s --force ~/dev/dots/bin/shot ~/.local/bin/
+ln -s --force ~/dev/dots/bin/tmuxer ~/.local/bin/
+ln -s --force ~/dev/dots/bin/autostart ~/.local/bin/
+ln -s --force ~/dev/dots/bin/launcher ~/.local/bin/
 
 
