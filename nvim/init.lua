@@ -44,7 +44,7 @@ vim.opt.splitright = true
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#FCE094", fg = "#07080D" })
-vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
 
 -- ----------------------
 -- COMMANDS / FUNCTIONS
