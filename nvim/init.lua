@@ -105,9 +105,9 @@ local function spell_check()
     end
 end
 
--- ------------------
+-- ==================
 -- Keybindings
--- ------------------
+-- ==================
 -- Leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
@@ -117,17 +117,17 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set("i", "jk", "<Esc>", opts)
 
 -- Buffer
-vim.keymap.set("n", "<Leader>E", ":Hex<CR>", opts)
+vim.keymap.set("n", "<Leader>-", ":Hex<CR>", opts)
 vim.keymap.set("n", "<Leader>e", ":Exp<CR>", opts)
-vim.keymap.set("n", "<Leader>l", ":Vex<CR>", opts)
+vim.keymap.set("n", "<Leader>\\", ":Vex<CR>", opts)
 vim.keymap.set("n", "<Leader>q", ":bd!<CR>", opts)
 vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
 vim.keymap.set("n", "<Leader>b", ":buffers<CR>", opts)
 vim.keymap.set("n", "<Leader>r", ":so $MYVIMRC<CR>", opts)
-vim.keymap.set("n", "<Leader>=", format_file, opts)
 vim.keymap.set("n", "<leader>/", ":set hlsearch!<CR>", opts)
+vim.keymap.set("n", "<Leader>=", format_file, opts)
+vim.keymap.set("n", "<leader>E", vim.diagnostic.setqflist)
 vim.keymap.set("n", "<F6>", spell_check, opts)
-vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist)
 
 -- Select
 vim.keymap.set({ "n", "v" }, "<Leader>;", "V", opts)
@@ -155,7 +155,7 @@ vim.keymap.set("n", "<Leader>Y", '"+y$', opts)
 vim.keymap.set({ "n", "v" }, "<Leader>y", '"+y', opts)
 vim.keymap.set({ "n", "v" }, "<Leader>p", '"+p', opts)
 vim.keymap.set({ "n", "v" }, "<Leader>P", '"+P', opts)
-vim.keymap.set({ "n", "v" }, "<Leader>x", '"_d', opts)
+vim.keymap.set({ "n", "v" }, "<Leader>d", '"_d', opts)
 
 -- Center me
 vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)

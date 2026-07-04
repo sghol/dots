@@ -218,6 +218,7 @@ bar_widgets = [
         no_update_string="",
     ),
     sep(),
+    sep(bg=color.get("bg", "#ff0000"), pad=0),
     widget.Pomodoro(
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
@@ -236,14 +237,15 @@ bar_widgets = [
         format="{essid}",
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
+        padding=10,
     ),
-    sep(bg=color.get("bg", "#ff0000"), pad=0),
+    sep(),
     widget.Net(
         prefix="k",
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
         format="{down:1.2f}{down_suffix} ↓↑ {up:1.2f}{up_suffix}",
-        padding_x=20,
+        padding=10,
     ),
     sep(),
     widget.KeyboardLayout(
