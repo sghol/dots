@@ -44,7 +44,7 @@ vim.opt.splitright = true
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#FCE094", fg = "#07080D" })
--- vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "#14161B" })
 
 -- ----------------------
 -- COMMANDS / FUNCTIONS
@@ -125,9 +125,16 @@ vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
 vim.keymap.set("n", "<Leader>b", ":buffers<CR>", opts)
 vim.keymap.set("n", "<Leader>r", ":so $MYVIMRC<CR>", opts)
 vim.keymap.set("n", "<leader>/", ":set hlsearch!<CR>", opts)
+vim.keymap.set("n", "<Leader><BS>", "<C-^>", opts)
 vim.keymap.set("n", "<Leader>=", format_file, opts)
-vim.keymap.set("n", "<leader>E", vim.diagnostic.setqflist)
+vim.keymap.set("n", "<Leader>E", vim.diagnostic.setqflist)
 vim.keymap.set("n", "<F6>", spell_check, opts)
+
+-- window move
+vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
+vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
+vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
+vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 
 -- Select
 vim.keymap.set({ "n", "v" }, "<Leader>;", "V", opts)
@@ -176,14 +183,12 @@ vim.pack.add({
     "https://github.com/nvim-mini/mini.pick",
     "https://github.com/mg979/vim-visual-multi",
     "https://github.com/karb94/neoscroll.nvim",
-    "https://github.com/sphamba/smear-cursor.nvim",
 })
 
 -- Load plugins
 require("mini.pick").setup()
 require("mini.pick").setup()
 require("neoscroll").setup()
-require("smear_cursor").setup()
 
 -- ------------------
 -- LSP

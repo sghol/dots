@@ -31,7 +31,7 @@ export EDITOR="nvim"
 export BROWSER="firefox"
 export FILEMANAGER="thunar"
 export VIDEOEDITOR="kdenlive"
-export TERMINAL="st"
+export TERMINAL="kitty"
 export TERM="xterm-256color"
 
 # Path

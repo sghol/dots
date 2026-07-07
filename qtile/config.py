@@ -140,7 +140,7 @@ groups = [Group(name=name, label=name) for name in ["1", "2", "3", "9", "0"]]
 #     LAYOUTS
 # ------------------
 layout_config = dict(
-    border_focus=color.get("primary", "#ff000"),
+    border_focus=color.get("primary", "#ff0000"),
     border_normal=color.get("bg", "#ff0000"),
     border_focus_stack=color.get("secondary", "#ff0000"),
     border_normal_stack=color.get("bg", "#ff0000"),
@@ -191,10 +191,10 @@ bar_widgets = [
     widget.GroupBox(
         highlight_method="block",
         background=color.get("alt_bg", "#ff0000"),
-        active=color.get("active", "#ff0000"),
-        inactive=color.get("inactive", "#ff0000"),
-        this_current_screen_border=color.get("primary", "#ff0000"),
-        block_highlight_text_color=color.get("bg", "#ff0000"),
+        active=color.get("active", "#00ff00"),
+        inactive=color.get("inactive", "#0000ff"),
+        this_current_screen_border=color.get("primary", "#ffff00"),
+        block_highlight_text_color=color.get("bg", "#ff00ff"),
     ),
     sep(),
     widget.CurrentLayout(
