@@ -1,4 +1,5 @@
 from subprocess import Popen
+
 import os
 
 from libqtile import bar, hook, layout, qtile, widget
@@ -23,6 +24,7 @@ TERMINAL = os.environ.get("TERMINAL")
 BROWSER = os.environ.get("BROWSER")
 FILEMANAGER = os.environ.get("FILEMANAGER")
 VIDEOEDITOR = os.environ.get("VIDEOEDITOR")
+EDITOR = os.environ.get("EDITOR")
 AUTOSTART_PATH = f"{HOME}/.local/bin/autostart"
 
 
@@ -62,11 +64,11 @@ keys = [
     Key(WIN, "p", lazy.spawn("launcher")),
     Key(WIN, "Print", lazy.spawn("shot")),
     Key(WIN, "b", lazy.spawn(BROWSER)),
-    Key(WIN, "e", lazy.spawn(FILEMANAGER)),
-    Key(WIN_SHT, "e", lazy.spawn(VIDEOEDITOR)),
+    Key(WIN, "e", lazy.spawn(EDITOR)),
+    Key(WIN_SHT, "e", lazy.spawn(FILEMANAGER)),
     Key(
-        ALT,
-        "shift_l",
+        WIN,
+        "slash",
         lazy.widget["keyboardlayout"].next_keyboard(),
     ),
     # Window command
@@ -190,11 +192,13 @@ def sep(bg=color.get("bg"), pad=2):
 bar_widgets = [
     widget.GroupBox(
         highlight_method="block",
-        background=color.get("alt_bg", "#ff0000"),
-        active=color.get("active", "#00ff00"),
+        background=color.get("alt_bg", "#00ff00"),
+        active=color.get("active", "#ff0000"),
         inactive=color.get("inactive", "#0000ff"),
         this_current_screen_border=color.get("primary", "#ffff00"),
         block_highlight_text_color=color.get("bg", "#ff00ff"),
+        urgent_border="#949643",
+        urgent_text=color.get("active", "#ff0000"),
     ),
     sep(),
     widget.CurrentLayout(

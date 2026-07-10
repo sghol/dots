@@ -27,7 +27,7 @@ alias sc='scrot -d 1 ~/pix/screenshots/%Y-%m-%d-%T-screenshot.png; notify-send "
 # EXPORTS
 # ---------
 export HOME=~
-export EDITOR="nvim"
+export EDITOR="emacsclient -c -a 'emacs'"
 export BROWSER="firefox"
 export FILEMANAGER="thunar"
 export VIDEOEDITOR="kdenlive"
