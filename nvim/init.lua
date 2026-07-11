@@ -39,8 +39,9 @@ vim.opt.completeopt = { "menuone", "noselect" }
 -- Window management --
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.showmode = false
 
--- terminal
+-- text-code
 vim.opt.termguicolors = true
 vim.opt.encoding = 'utf-8'
 vim.opt.termbidi = true
@@ -109,6 +110,33 @@ local function spell_check()
     end
 end
 
+-- Toggle a persistent terminal at the bottom
+local term_buf = nil
+local term_win = nil
+
+local function toggle_terminal()
+    -- Terminal window currently visible -> just hide it
+    if term_win and vim.api.nvim_win_is_valid(term_win) then
+        vim.api.nvim_win_hide(term_win)
+        term_win = nil
+        return
+    end
+
+    -- Terminal buffer exists but window is closed -> reopen it
+    if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
+        vim.cmd('split | resize 20')
+        vim.api.nvim_win_set_buf(0, term_buf)
+        term_win = vim.api.nvim_get_current_win()
+    else
+        -- No terminal yet -> create one
+        vim.cmd('split | resize 20 | terminal')
+        term_buf = vim.api.nvim_get_current_buf()
+        term_win = vim.api.nvim_get_current_win()
+    end
+
+    vim.cmd('startinsert')
+end
+
 -- ==================
 -- Keybindings
 -- ==================
@@ -120,10 +148,7 @@ local opts = { noremap = true, silent = true }
 -- INSERT --
 vim.keymap.set("i", "jk", "<Esc>", opts)
 
--- Buffer
--- vim.keymap.set("n", "<Leader>-", ":Hex<CR>", opts)
--- vim.keymap.set("n", "<Leader>e", ":Exp<CR>", opts)
--- vim.keymap.set("n", "<Leader>\\", ":Vex<CR>", opts)
+-- buffer
 vim.keymap.set("n", "<Leader>q", ":bd!<CR>", opts)
 vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
 vim.keymap.set("n", "<Leader>b", ":buffers<CR>", opts)
@@ -133,6 +158,11 @@ vim.keymap.set("n", "<Leader><BS>", "<C-^>", opts)
 vim.keymap.set("n", "<Leader>=", format_file, opts)
 vim.keymap.set("n", "<Leader>E", vim.diagnostic.setqflist)
 vim.keymap.set("n", "<F6>", spell_check, opts)
+
+-- terminal
+vim.keymap.set('n', '<C-CR>', toggle_terminal, opts)
+vim.keymap.set('t', '<C-CR>', toggle_terminal, opts)
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', opts)
 
 -- window move
 vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
@@ -174,12 +204,14 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
 vim.keymap.set("n", "n", "nzzzv", opts)
 vim.keymap.set("n", "N", "Nzzzv", opts)
 
--- mini pick
-vim.keymap.set("n", "<leader>ff", ":Pick files<CR>", opts)
-vim.keymap.set("n", "<leader>fb", ":Pick buffers<CR>", opts)
-vim.keymap.set("n", "<leader>fg", ":Pick grep_live<CR>", opts)
 
-vim.keymap.set("n", "<leader>e", ":lua MiniFiles.open()<CR>", opts)
+-- mini pick
+vim.keymap.set("n", "<Leader>ff", ":Pick files<CR>", opts)
+vim.keymap.set("n", "<Leader>fg", ":Pick grep_live<CR>", opts)
+vim.keymap.set("n", "<Leader><Leader>", ":Pick buffers<CR>", opts)
+
+vim.keymap.set("n", "<Leader>e", ":Oil<CR>", opts)
+
 
 -- ==================
 -- Plugins
@@ -189,18 +221,18 @@ vim.pack.add({
     "https://github.com/nvim-mini/mini.pick",
     'https://github.com/nvim-mini/mini.icons',
     'https://github.com/nvim-mini/mini.statusline',
-    'https://github.com/nvim-mini/mini.indentscope',
-    'https://github.com/nvim-mini/mini.files',
+    'https://github.com/stevearc/oil.nvim',
     "https://github.com/mg979/vim-visual-multi",
     "https://github.com/karb94/neoscroll.nvim",
+    "https://github.com/folke/tokyonight.nvim",
+    "https://github.com/olivercederborg/poimandres.nvim"
 })
 
 -- Load plugins
 require("mini.pick").setup()
 require("mini.icons").setup()
 require("mini.statusline").setup()
-require("mini.indentscope").setup()
-require("mini.files").setup()
+require("oil").setup()
 require("neoscroll").setup()
 
 -- ==================

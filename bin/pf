@@ -6,12 +6,12 @@ bg="#000000"
 fg="#cccccc"
 sel="#ffffff"
 
-selected=$(find ~/dev ~/dev/lms -maxdepth 1 -mindepth 1 -type d | dmenu -i -p "Projects :: " -nb $bg -nf $fg -sb $sel -sf $bg ) || exit 0
+selected=$(find ~/dev ~/dev/lms -maxdepth 1 -mindepth 1 -type d | dmenu -i -p "Projects" -nb $bg -nf $fg -sb $sel -sf $bg ) || exit 0
 
 # If nothing selected, exit
 [ -z "$selected" ] && exit 0
 
-echo $selected
+# change directory to selected project path
+cd "$selected" || exit 1
 
-emacsclient -c -n "$selected" 2>/dev/null || emacs "$selected"
-echo $?
+"$TERMINAL" -e "$EDITOR" .

@@ -65,7 +65,7 @@ keys = [
     Key(WIN_SHT, "p", lazy.spawn("pf")),
     Key(WIN, "Print", lazy.spawn("shot")),
     Key(WIN, "b", lazy.spawn(BROWSER)),
-    Key(WIN, "e", lazy.spawn(EDITOR)),
+    # Key(WIN, "e", lazy.spawn(EDITOR)),
     Key(WIN_SHT, "e", lazy.spawn(FILEMANAGER)),
     Key(
         WIN,

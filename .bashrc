@@ -27,12 +27,13 @@ alias sc='scrot -d 1 ~/pix/screenshots/%Y-%m-%d-%T-screenshot.png; notify-send "
 # EXPORTS
 # ---------
 export HOME=~
-export EDITOR="emacsclient -c -a 'emacs'"
+export EDITOR="nvim"
+export TERMINAL="kitty"
+export TERM="xterm-256color"
 export BROWSER="firefox"
 export FILEMANAGER="thunar"
 export VIDEOEDITOR="kdenlive"
-export TERMINAL="kitty"
-export TERM="xterm-256color"
+export EMACS="emacsclient -c -a 'emacs'"
 
 # Path
 export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
