@@ -5,7 +5,7 @@ application/xhtml+xml=firefox.desktop
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 text/html=firefox.desktop
-text/plain=nvim.desktop
+text/plain=emacsclient.desktop
 image/jpeg=sxiv.desktop
 image/jpg=sxiv.desktop
 image/png=sxiv.desktop
@@ -15,13 +15,13 @@ x-scheme-handler/oblivion=oblivion-desktop.desktop
 application/x-zerosize=libreoffice-writer.desktop
 
 [Added Associations]
-text/plain=firefox.desktop;org.gnome.gedit.desktop;emacs.desktop;nvim.desktop;
+text/plain=emacsclient.desktop;firefox.desktop;org.gnome.gedit.desktop;nvim.desktop;
 video/x-sgi-movie=vlc.desktop;
 x-scheme-handler/tonsite=org.telegram.desktop.desktop;userapp-Telegram Desktop-5O2YT2.desktop;
 x-scheme-handler/tg=userapp-Telegram Desktop-A3OYT2.desktop;
-image/svg+xml=chromium.desktop;firefox.desktop;org.inkscape.Inkscape.desktop;emacs.desktop;gimp.desktop;
-text/calendar=vscode.desktop;emacs.desktop;
-text/x-go=emacs.desktop;firefox.desktop;libreoffice-writer.desktop;nvim.desktop;
+image/svg+xml=chromium.desktop;firefox.desktop;org.inkscape.Inkscape.desktop;emacsclient.desktop;gimp.desktop;
+text/calendar=vscode.desktop;emacsclient.desktop;
+text/x-go=emacsclient.desktop;firefox.desktop;libreoffice-writer.desktop;nvim.desktop;
 application/x-zerosize=libreoffice-writer.desktop;
 text/javascript=firefox.desktop;
 image/jpeg=gimp.desktop;

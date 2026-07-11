@@ -14,7 +14,7 @@ xset s off &
 xset -dpms &
 
 # Persian Keyboard Layout
-setxkbmap -layout us,ir -option grp:alt_shift_toggle &
+# setxkbmap -layout us,ir -option grp:alt_shift_toggle &
 
 # Disable touch pad
 xinput disable "AlpsPS/2 ALPS GlidePoint" &

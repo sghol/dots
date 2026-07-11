@@ -62,6 +62,7 @@ keys = [
     # Run specific program
     Key(WIN, "Return", lazy.spawn(TERMINAL)),
     Key(WIN, "p", lazy.spawn("launcher")),
+    Key(WIN_SHT, "p", lazy.spawn("pf")),
     Key(WIN, "Print", lazy.spawn("shot")),
     Key(WIN, "b", lazy.spawn(BROWSER)),
     Key(WIN, "e", lazy.spawn(EDITOR)),
@@ -197,7 +198,7 @@ bar_widgets = [
         inactive=color.get("inactive", "#0000ff"),
         this_current_screen_border=color.get("primary", "#ffff00"),
         block_highlight_text_color=color.get("bg", "#ff00ff"),
-        urgent_border="#949643",
+        urgent_border=color.get("alt_bg", "#00ff00"),
         urgent_text=color.get("active", "#ff0000"),
     ),
     sep(),

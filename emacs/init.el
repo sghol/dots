@@ -64,12 +64,29 @@
 (recentf-mode 1)
 (save-place-mode 1)
 
-;; Persian fonts
+
+;; =================================
+;; theme and persian font (headless)
+;; =================================
+;; 1. Apply to initial launch (for normal, non-daemon usage)
 (set-fontset-font t 'arabic (font-spec :family "Vazir"))
 
+;; 2. Apply whenever emacsclient opens a new window
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (with-selected-frame frame
+              (when (display-graphic-p)
+                ;; Reload custom.el in the GUI to fix broken theme colors
+                (load-file custom-file)
+                ;; Set the font again so custom.el doesn't overwrite it
+                (set-fontset-font t 'arabic (font-spec :family "Vazir"))))))
 
+
+;; =====================
 ;; lsp
+;; =====================
 (add-hook 'go-mode-hook 'eglot-ensure)
+
 
 ;; =======================
 ;; Vertical selection
@@ -110,6 +127,7 @@
          ("C-c f f" . consult-find)
          ("C-c f i" . consult-imenu)
 	 ("C-c f o" . consult-outline)))
+
 ;; =======================
 ;; Auto complation
 ;; =======================
@@ -125,7 +143,6 @@
   :ensure t
   :bind (("M-<up>" . move-text-up)
          ("M-<down>" . move-text-down)))
-
 
 ;; =======================
 ;; Go Lang
@@ -150,15 +167,23 @@
   (kill-line)
   (kill-line))
 
+(defun eshell-split-below ()
+  (interactive)
+  (split-window-below)
+  (other-window 1)    
+  (eshell))
+
 ;; mark current line
 (global-set-key(kbd "C-;") 'mark-current-line) 
 ;; copy line down
 (global-set-key(kbd "C-.") 'duplicate-dwim)
+(global-set-key(kbd "C-<return>") 'eshell-split-below)
 
 ;; delete current line
 (global-set-key(kbd "C-c k") 'delete-current-line)
 ;;current buffer
 (global-set-key (kbd "C-c x") 'eval-buffer)
+
 
 
 (message "init.el loaded successfully")

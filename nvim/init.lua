@@ -1,6 +1,6 @@
---- ------------------
+-- ==================
 -- options
--- -------------------
+-- ==================-
 -- File handling --
 vim.opt.backup = false
 vim.opt.writebackup = false
@@ -40,15 +40,19 @@ vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
--- color
+-- terminal
 vim.opt.termguicolors = true
+vim.opt.encoding = 'utf-8'
+vim.opt.termbidi = true
+vim.opt.arabicshape = true
+
+-- color
 vim.opt.background = "dark"
 vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#FCE094", fg = "#07080D" })
--- vim.api.nvim_set_hl(0, "Normal", { bg = "#14161B" })
 
--- ----------------------
+-- ======================
 -- COMMANDS / FUNCTIONS
--- ----------------------
+-- ======================
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
@@ -117,9 +121,9 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set("i", "jk", "<Esc>", opts)
 
 -- Buffer
-vim.keymap.set("n", "<Leader>-", ":Hex<CR>", opts)
-vim.keymap.set("n", "<Leader>e", ":Exp<CR>", opts)
-vim.keymap.set("n", "<Leader>\\", ":Vex<CR>", opts)
+-- vim.keymap.set("n", "<Leader>-", ":Hex<CR>", opts)
+-- vim.keymap.set("n", "<Leader>e", ":Exp<CR>", opts)
+-- vim.keymap.set("n", "<Leader>\\", ":Vex<CR>", opts)
 vim.keymap.set("n", "<Leader>q", ":bd!<CR>", opts)
 vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
 vim.keymap.set("n", "<Leader>b", ":buffers<CR>", opts)
@@ -175,24 +179,33 @@ vim.keymap.set("n", "<leader>ff", ":Pick files<CR>", opts)
 vim.keymap.set("n", "<leader>fb", ":Pick buffers<CR>", opts)
 vim.keymap.set("n", "<leader>fg", ":Pick grep_live<CR>", opts)
 
--- ------------------
+vim.keymap.set("n", "<leader>e", ":lua MiniFiles.open()<CR>", opts)
+
+-- ==================
 -- Plugins
--- ------------------
+-- ==================
 -- Install packages
 vim.pack.add({
     "https://github.com/nvim-mini/mini.pick",
+    'https://github.com/nvim-mini/mini.icons',
+    'https://github.com/nvim-mini/mini.statusline',
+    'https://github.com/nvim-mini/mini.indentscope',
+    'https://github.com/nvim-mini/mini.files',
     "https://github.com/mg979/vim-visual-multi",
     "https://github.com/karb94/neoscroll.nvim",
 })
 
 -- Load plugins
 require("mini.pick").setup()
-require("mini.pick").setup()
+require("mini.icons").setup()
+require("mini.statusline").setup()
+require("mini.indentscope").setup()
+require("mini.files").setup()
 require("neoscroll").setup()
 
--- ------------------
+-- ==================
 -- LSP
--- ------------------
+-- ==================
 -- Lua
 vim.lsp.config["lua_ls"] = {
     cmd = { "lua-language-server" },

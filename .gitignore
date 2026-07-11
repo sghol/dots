@@ -1,4 +1,4 @@
 __pycache__/
 *.pyc
-nvim-pack-lock.json
+nvim/nvim-pack-lock.json
 .luarc.json
