@@ -43,7 +43,7 @@ vim.opt.showmode = false
 
 -- text-code
 vim.opt.termguicolors = true
-vim.opt.encoding = 'utf-8'
+vim.opt.encoding = "utf-8"
 vim.opt.termbidi = true
 vim.opt.arabicshape = true
 
@@ -56,85 +56,55 @@ vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#FCE094", fg = "#07080D" })
 -- ======================
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-    callback = function()
-        vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 150 })
-    end,
+	callback = function()
+		vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 150 })
+	end,
 })
 
 -- file specific configs
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "javascript", "typescript", "html", "css" },
-    callback = function()
-        vim.bo.tabstop = 2
-        vim.bo.shiftwidth = 2
-        vim.bo.softtabstop = 2
-    end,
+	pattern = { "javascript", "typescript", "html", "css" },
+	callback = function()
+		vim.bo.tabstop = 2
+		vim.bo.shiftwidth = 2
+		vim.bo.softtabstop = 2
+	end,
 })
 
 -- code formatting
 local function format_file()
-    -- if lsp support fomratting
-    vim.lsp.buf.format()
+	-- use cli tools to format the file
+	local ft = vim.bo.filetype
+	local formatters = {
+		python = "black --quiet",
+		lua = "stylua",
+		go = "go fmt",
+		sql = "pg_format -f 2 -u 2 -o",
+		javascript = "prettier --write",
+		typescript = "prettier --write",
+		html = "prettier --write",
+		json = "prettier --write",
+		css = "prettier --write",
+		sh = "shfmt -i 2 -ci -s -w",
+		bash = "shfmt -i 2 -ci -s -w",
+	}
 
-    -- use cli tools to format the file
-    local ft = vim.bo.filetype
-    local formatters = {
-        python = "black --quiet",
-        -- lua = "stylua",
-        go = "go fmt",
-        sql = "pg_format -f 2 -u 2 -o",
-        javascript = "prettier --write",
-        typescript = "prettier --write",
-        html = "prettier --write",
-        json = "prettier --write",
-        css = "prettier --write",
-        sh = "shfmt -i 2 -ci -s -w",
-        bash = "shfmt -i 2 -ci -s -w",
-    }
-
-    local fmt = formatters[ft]
-    if fmt then
-        vim.cmd("silent !" .. fmt .. " %")
-        vim.cmd("edit!")
-    end
+	local fmt = formatters[ft]
+	if fmt then
+		vim.cmd("silent !" .. fmt .. " %")
+		vim.cmd("edit!")
+	end
 end
 
 -- Spell check
 local function spell_check()
-    vim.opt.spell = not vim.o.spell
-    if vim.o.spell then
-        vim.opt.spelllang = "en_us"
-        vim.notify("Spell check ON", vim.log.levels.INFO)
-    else
-        vim.notify("Spell check OFF", vim.log.levels.INFO)
-    end
-end
-
--- Toggle a persistent terminal at the bottom
-local term_buf = nil
-local term_win = nil
-
-local function toggle_terminal()
-    -- Terminal window currently visible -> just hide it
-    if term_win and vim.api.nvim_win_is_valid(term_win) then
-        vim.api.nvim_win_hide(term_win)
-        term_win = nil
-        return
-    end
-
-    -- Terminal buffer exists but window is closed -> reopen it
-    if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
-        vim.cmd('split | resize 20')
-        vim.api.nvim_win_set_buf(0, term_buf)
-        term_win = vim.api.nvim_get_current_win()
-    else
-        -- No terminal yet -> create one
-        vim.cmd('split | resize 20 | terminal')
-        term_buf = vim.api.nvim_get_current_buf()
-        term_win = vim.api.nvim_get_current_win()
-    end
-
-    vim.cmd('startinsert')
+	vim.opt.spell = not vim.o.spell
+	if vim.o.spell then
+		vim.opt.spelllang = "en_us"
+		vim.notify("Spell check ON", vim.log.levels.INFO)
+	else
+		vim.notify("Spell check OFF", vim.log.levels.INFO)
+	end
 end
 
 -- ==================
@@ -160,9 +130,8 @@ vim.keymap.set("n", "<Leader>E", vim.diagnostic.setqflist)
 vim.keymap.set("n", "<F6>", spell_check, opts)
 
 -- terminal
-vim.keymap.set('n', '<C-CR>', toggle_terminal, opts)
-vim.keymap.set('t', '<C-CR>', toggle_terminal, opts)
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', opts)
+vim.keymap.set("n", "<C-CR>", ":term<CR>A", opts)
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
 
 -- window move
 vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
@@ -204,7 +173,6 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
 vim.keymap.set("n", "n", "nzzzv", opts)
 vim.keymap.set("n", "N", "Nzzzv", opts)
 
-
 -- mini pick
 vim.keymap.set("n", "<Leader>ff", ":Pick files<CR>", opts)
 vim.keymap.set("n", "<Leader>fg", ":Pick grep_live<CR>", opts)
@@ -212,20 +180,19 @@ vim.keymap.set("n", "<Leader><Leader>", ":Pick buffers<CR>", opts)
 
 vim.keymap.set("n", "<Leader>e", ":Oil<CR>", opts)
 
-
 -- ==================
 -- Plugins
 -- ==================
 -- Install packages
 vim.pack.add({
-    "https://github.com/nvim-mini/mini.pick",
-    'https://github.com/nvim-mini/mini.icons',
-    'https://github.com/nvim-mini/mini.statusline',
-    'https://github.com/stevearc/oil.nvim',
-    "https://github.com/mg979/vim-visual-multi",
-    "https://github.com/karb94/neoscroll.nvim",
-    "https://github.com/folke/tokyonight.nvim",
-    "https://github.com/olivercederborg/poimandres.nvim"
+	"https://github.com/nvim-mini/mini.pick",
+	"https://github.com/nvim-mini/mini.icons",
+	"https://github.com/nvim-mini/mini.statusline",
+	"https://github.com/stevearc/oil.nvim",
+	"https://github.com/mg979/vim-visual-multi",
+	"https://github.com/karb94/neoscroll.nvim",
+	"https://github.com/folke/tokyonight.nvim",
+	"https://github.com/olivercederborg/poimandres.nvim",
 })
 
 -- Load plugins
@@ -240,44 +207,44 @@ require("neoscroll").setup()
 -- ==================
 -- Lua
 vim.lsp.config["lua_ls"] = {
-    cmd = { "lua-language-server" },
-    filetypes = { "lua" },
-    root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
+	cmd = { "lua-language-server" },
+	filetypes = { "lua" },
+	root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
 }
 
 -- Python
 vim.lsp.config["pyright"] = {
-    cmd = { "pyright-langserver", "--stdio" },
-    filetypes = { "python" },
-    root_markers = { "pyproject.toml", "setup.py", "requirements.txt" },
+	cmd = { "pyright-langserver", "--stdio" },
+	filetypes = { "python" },
+	root_markers = { "pyproject.toml", "setup.py", "requirements.txt" },
 }
 
 -- Go
 vim.lsp.config["gopls"] = {
-    cmd = { "gopls" },
-    filetypes = { "go", "gomod", "gowork", "gotmpl" },
-    root_markers = { "go.mod", "go.work" },
+	cmd = { "gopls" },
+	filetypes = { "go", "gomod", "gowork", "gotmpl" },
+	root_markers = { "go.mod", "go.work" },
 }
 
 -- Javascipt / TypeScript
 vim.lsp.config["ts_ls"] = {
-    cmd = { "typescript-language-server", "--stdio" },
-    filetypes = { "javascript", "typescript" },
-    root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
+	cmd = { "typescript-language-server", "--stdio" },
+	filetypes = { "javascript", "typescript" },
+	root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
 }
 
 -- PHP
 vim.lsp.config["intelephense"] = {
-    cmd = { "intelephense", "--stdio" },
-    filetypes = { "php" },
-    root_markers = { ".git", "composer.json" },
+	cmd = { "intelephense", "--stdio" },
+	filetypes = { "php" },
+	root_markers = { ".git", "composer.json" },
 }
 
 -- C / C++
 vim.lsp.config["clangd"] = {
-    cmd = { "clangd" },
-    filetypes = { "c", "cpp" },
-    root_markers = { ".clangd", "compile_commands.json", "compile_flags.txt", ".git" },
+	cmd = { "clangd" },
+	filetypes = { "c", "cpp" },
+	root_markers = { ".clangd", "compile_commands.json", "compile_flags.txt", ".git" },
 }
 -- lsp enable
 vim.lsp.enable({ "lua_ls", "pyright", "gopls", "ts_ls", "intelephense", "clangd" })
