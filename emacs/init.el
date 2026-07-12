@@ -184,6 +184,8 @@
 ;;current buffer
 (global-set-key (kbd "C-c x") 'eval-buffer)
 
-
+;; right ctrl
+(define-key input-decode-map (kbd "<Shift_R>") (kbd "<Control_R>"))
+(define-key input-decode-map (kbd "<menu>") (kbd "<Control_R>"))
 
 (message "init.el loaded successfully")

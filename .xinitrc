@@ -1,4 +1,1 @@
-
-#!/bin/sh
-
 qtile start

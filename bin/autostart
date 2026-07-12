@@ -34,5 +34,8 @@ blueman-applet &
 # Hide mouse pointer when not used 
 unclutter &
 
+xmodmap -e 'keycode 135 = Control_R' &
+xmodmap -e 'add Control = Control_R' &
+
 # composite 
 picom -b

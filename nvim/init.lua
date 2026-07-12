@@ -124,7 +124,7 @@ vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
 vim.keymap.set("n", "<Leader>b", ":buffers<CR>", opts)
 vim.keymap.set("n", "<Leader>r", ":so $MYVIMRC<CR>", opts)
 vim.keymap.set("n", "<leader>/", ":set hlsearch!<CR>", opts)
-vim.keymap.set("n", "<Leader><BS>", "<C-^>", opts)
+vim.keymap.set("n", "<Leader><Tab>", "<C-^>", opts)
 vim.keymap.set("n", "<Leader>=", format_file, opts)
 vim.keymap.set("n", "<Leader>E", vim.diagnostic.setqflist)
 vim.keymap.set("n", "<F6>", spell_check, opts)
@@ -192,7 +192,6 @@ vim.pack.add({
 	"https://github.com/mg979/vim-visual-multi",
 	"https://github.com/karb94/neoscroll.nvim",
 	"https://github.com/folke/tokyonight.nvim",
-	"https://github.com/olivercederborg/poimandres.nvim",
 })
 
 -- Load plugins
