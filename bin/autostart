@@ -31,14 +31,5 @@ blueman-applet &
 # Hide mouse pointer when not used 
 unclutter &
 
-# custom keyboard remap
-remap &
-
-# custom keymap
-# xmodmap -e "clear lock"
-# xmodmap -e "clear control"
-# xmodmap -e "keycode 135 = Control_R"
-# xmodmap -e "keycode 66 = Control_L"
-# xmodmap -e "add control = Control_L Control_R"
-
+# compsitor
 picom -b

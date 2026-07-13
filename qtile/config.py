@@ -71,7 +71,6 @@ keys = [
         WIN,
         "slash",
         lazy.widget["keyboardlayout"].next_keyboard(),
-        lazy.spawn("xmodmap ~/.Xmodmap"),
     ),
     # Window command
     Key(WIN, "q", lazy.window.kill()),
@@ -258,6 +257,7 @@ bar_widgets = [
         background=color.get("alt_bg", "#ff0000"),
         foreground=color.get("fg", "#ff0000"),
         configured_keyboards=["us", "ir"],
+        option="ctrl:nocaps,ctrl:menu_rctrl",
         padding=10,
     ),
     sep(),
