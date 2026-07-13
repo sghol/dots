@@ -13,9 +13,6 @@ xset -b &
 xset s off &
 xset -dpms &
 
-# Persian Keyboard Layout
-# setxkbmap -layout us,ir -option grp:alt_shift_toggle &
-
 # Disable touch pad
 xinput disable "AlpsPS/2 ALPS GlidePoint" &
 
@@ -34,8 +31,14 @@ blueman-applet &
 # Hide mouse pointer when not used 
 unclutter &
 
-xmodmap -e 'keycode 135 = Control_R' &
-xmodmap -e 'add Control = Control_R' &
+# custom keyboard remap
+remap &
 
-# composite 
+# custom keymap
+# xmodmap -e "clear lock"
+# xmodmap -e "clear control"
+# xmodmap -e "keycode 135 = Control_R"
+# xmodmap -e "keycode 66 = Control_L"
+# xmodmap -e "add control = Control_L Control_R"
+
 picom -b

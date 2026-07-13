@@ -65,12 +65,13 @@ keys = [
     Key(WIN_SHT, "p", lazy.spawn("pf")),
     Key(WIN, "Print", lazy.spawn("shot")),
     Key(WIN, "b", lazy.spawn(BROWSER)),
-    # Key(WIN, "e", lazy.spawn(EDITOR)),
+    # Key(WIN, "e", lazy.spawn(EMACS)),
     Key(WIN_SHT, "e", lazy.spawn(FILEMANAGER)),
     Key(
         WIN,
         "slash",
         lazy.widget["keyboardlayout"].next_keyboard(),
+        lazy.spawn("xmodmap ~/.Xmodmap"),
     ),
     # Window command
     Key(WIN, "q", lazy.window.kill()),

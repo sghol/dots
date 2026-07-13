@@ -51,4 +51,5 @@ ln -s --force ~/dev/dots/bin/tmuxer ~/.local/bin/
 ln -s --force ~/dev/dots/bin/autostart ~/.local/bin/
 ln -s --force ~/dev/dots/bin/launcher ~/.local/bin/
 ln -s --force ~/dev/dots/bin/pf ~/.local/bin/
+ln -s --force ~/dev/dots/bin/remap ~/.local/bin/
 
