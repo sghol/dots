@@ -121,23 +121,23 @@ vim.keymap.set("i", "jk", "<Esc>", opts)
 -- buffer
 vim.keymap.set("n", "<Leader>q", ":bd!<CR>", opts)
 vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
-vim.keymap.set("n", "<Leader>b", ":buffers<CR>", opts)
+vim.keymap.set("n", "<Leader><Tab>", ":b#<CR>", opts)
+
+-- reload nvim config
 vim.keymap.set("n", "<Leader>r", ":so $MYVIMRC<CR>", opts)
-vim.keymap.set("n", "<leader>/", ":set hlsearch!<CR>", opts)
-vim.keymap.set("n", "<Leader><Tab>", "<C-^>", opts)
+
+-- windows
+vim.keymap.set("n", "<Leader>c", ":wincmd c<CR>", opts)
+vim.keymap.set("n", "<Leader><Leader>", ":wincmd w<CR>", opts)
+
+-- custom scripts keys
 vim.keymap.set("n", "<Leader>=", format_file, opts)
 vim.keymap.set("n", "<Leader>E", vim.diagnostic.setqflist)
 vim.keymap.set("n", "<F6>", spell_check, opts)
 
 -- terminal
-vim.keymap.set("n", "<C-CR>", ":term<CR>A", opts)
+vim.keymap.set("n", "<C-CR>", ":term<CR>mTA", opts)
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
-
--- window move
-vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
-vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
-vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
-vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 
 -- Select
 vim.keymap.set({ "n", "v" }, "<Leader>;", "V", opts)
@@ -176,7 +176,7 @@ vim.keymap.set("n", "N", "Nzzzv", opts)
 -- mini pick
 vim.keymap.set("n", "<Leader>ff", ":Pick files<CR>", opts)
 vim.keymap.set("n", "<Leader>fg", ":Pick grep_live<CR>", opts)
-vim.keymap.set("n", "<Leader><Leader>", ":Pick buffers<CR>", opts)
+vim.keymap.set("n", "<Leader>fb", ":Pick buffers<CR>", opts)
 
 vim.keymap.set("n", "<Leader>e", ":Oil<CR>", opts)
 
@@ -198,8 +198,10 @@ vim.pack.add({
 require("mini.pick").setup()
 require("mini.icons").setup()
 require("mini.statusline").setup()
-require("oil").setup()
 require("neoscroll").setup()
+require("oil").setup({
+	skip_confirm_for_simple_edits = true,
+})
 
 -- ==================
 -- LSP
