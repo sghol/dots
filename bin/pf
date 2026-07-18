@@ -14,4 +14,6 @@ selected=$(find ~/dev ~/dev/lms -maxdepth 1 -mindepth 1 -type d | dmenu -i -p "P
 # change directory to selected project path
 cd "$selected" || exit 1
 
-"$TERMINAL" -e "$EDITOR" .
+echo "$(pwd)"
+
+"$TERMINAL" -- "$EDITOR" .

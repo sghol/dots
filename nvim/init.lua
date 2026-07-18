@@ -71,6 +71,15 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- create terminal on entering neovim
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		vim.cmd("below terminal")
+		vim.cmd("mark T")
+		vim.api.nvim_buf_set_name(0, "Terminal")
+		vim.cmd("hide")
+	end,
+})
 -- code formatting
 local function format_file()
 	-- use cli tools to format the file
@@ -107,6 +116,13 @@ local function spell_check()
 	end
 end
 
+-- highlight words same as word under cursor
+local function hi_under_cursor()
+	local word = vim.fn.expand("<cword>")
+	vim.cmd("let @/='\\V" .. word .. "'")
+	vim.cmd("set hlsearch")
+end
+
 -- ==================
 -- Keybindings
 -- ==================
@@ -121,23 +137,29 @@ vim.keymap.set("i", "jk", "<Esc>", opts)
 -- buffer
 vim.keymap.set("n", "<Leader>q", ":bd!<CR>", opts)
 vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
-vim.keymap.set("n", "<Leader><Tab>", ":b#<CR>", opts)
+vim.keymap.set("n", "<Leader><Leader>", ":b#<CR>", opts)
+
+-- higligh search and words under cursor
+vim.keymap.set("n", "<Leader>/", ":set hlsearch!<CR>", opts)
+vim.keymap.set("n", "<F8>", hi_under_cursor, opts)
+-- explorer
+vim.keymap.set("n", "<Leader>e", ":Exp<CR>", opts)
 
 -- reload nvim config
 vim.keymap.set("n", "<Leader>r", ":so $MYVIMRC<CR>", opts)
 
 -- windows
 vim.keymap.set("n", "<Leader>c", ":wincmd c<CR>", opts)
-vim.keymap.set("n", "<Leader><Leader>", ":wincmd w<CR>", opts)
+vim.keymap.set("n", "<Leader><Tab>", ":wincmd w<CR>", opts)
 
 -- custom scripts keys
 vim.keymap.set("n", "<Leader>=", format_file, opts)
 vim.keymap.set("n", "<Leader>E", vim.diagnostic.setqflist)
 vim.keymap.set("n", "<F6>", spell_check, opts)
 
--- terminal
-vim.keymap.set("n", "<C-CR>", ":term<CR>mTA", opts)
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
+-- terminal keymaps
+vim.keymap.set("n", "<A-CR>", ":split | resize 20 | term<CR>A", opts)
+vim.keymap.set("t", "<A-space>", "<C-\\><C-n>", opts)
 
 -- Select
 vim.keymap.set({ "n", "v" }, "<Leader>;", "V", opts)
@@ -149,8 +171,8 @@ vim.keymap.set("v", "<A-.>", ":copy . -1<CR>gv", opts)
 vim.keymap.set("i", "<A-.>", "<C-o>:copy .<CR>", opts)
 
 -- Newline while in insert mode
-vim.keymap.set({ "i", "n" }, "<A-[>", "<Esc>O", opts)
-vim.keymap.set({ "i", "n" }, "<A-]>", "<Esc>o", opts)
+vim.keymap.set({ "i", "n" }, "<C-[>", "<Esc>O", opts)
+vim.keymap.set({ "i", "n" }, "<C-]>", "<Esc>o", opts)
 
 -- Move line up/down
 vim.keymap.set("n", "<A-j>", ":move .+1<CR>==", opts)
@@ -174,34 +196,31 @@ vim.keymap.set("n", "n", "nzzzv", opts)
 vim.keymap.set("n", "N", "Nzzzv", opts)
 
 -- mini pick
-vim.keymap.set("n", "<Leader>ff", ":Pick files<CR>", opts)
-vim.keymap.set("n", "<Leader>fg", ":Pick grep_live<CR>", opts)
-vim.keymap.set("n", "<Leader>fb", ":Pick buffers<CR>", opts)
-
-vim.keymap.set("n", "<Leader>e", ":Oil<CR>", opts)
+vim.keymap.set("n", "<Leader>ff", ":FzfLua files<CR>", opts)
+vim.keymap.set("n", "<Leader>fb", ":FzfLua buffers<CR>", opts)
+vim.keymap.set("n", "<Leader>f/", ":FzfLua lines<CR>", opts)
+vim.keymap.set("n", "<Leader>fg", ":FzfLua live_grep<CR>", opts)
+vim.keymap.set("n", "<Leader>fG", ":FzfLua global<CR>", opts)
+vim.keymap.set("n", "<Leader>fr", ":FzfLua lsp_references<CR>", opts)
+vim.keymap.set("n", "<Leader>fd", ":FzfLua lsp_definitions<CR>", opts)
 
 -- ==================
 -- Plugins
 -- ==================
 -- Install packages
 vim.pack.add({
-	"https://github.com/nvim-mini/mini.pick",
+	"https://github.com/ibhagwan/fzf-lua",
 	"https://github.com/nvim-mini/mini.icons",
 	"https://github.com/nvim-mini/mini.statusline",
-	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/mg979/vim-visual-multi",
 	"https://github.com/karb94/neoscroll.nvim",
-	"https://github.com/folke/tokyonight.nvim",
 })
 
 -- Load plugins
-require("mini.pick").setup()
 require("mini.icons").setup()
 require("mini.statusline").setup()
 require("neoscroll").setup()
-require("oil").setup({
-	skip_confirm_for_simple_edits = true,
-})
+require("fzf-lua").setup({ { "ivy", "hide" } })
 
 -- ==================
 -- LSP
