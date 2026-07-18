@@ -71,15 +71,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- create terminal on entering neovim
-vim.api.nvim_create_autocmd("VimEnter", {
-	callback = function()
-		vim.cmd("below terminal")
-		vim.cmd("mark T")
-		vim.api.nvim_buf_set_name(0, "Terminal")
-		vim.cmd("hide")
-	end,
-})
 -- code formatting
 local function format_file()
 	-- use cli tools to format the file
@@ -123,6 +114,31 @@ local function hi_under_cursor()
 	vim.cmd("set hlsearch")
 end
 
+-- Toggle a persistent terminal at the bottom
+local term_buf = nil
+local term_win = nil
+local function toggle_terminal()
+	-- Terminal window currently visible -> just hide it
+	if term_win and vim.api.nvim_win_is_valid(term_win) then
+		vim.api.nvim_win_hide(term_win)
+		term_win = nil
+		return
+	end
+	-- Terminal buffer exists but window is closed -> reopen it
+	if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
+		vim.cmd("split | resize 20")
+		vim.api.nvim_win_set_buf(0, term_buf)
+		term_win = vim.api.nvim_get_current_win()
+	else
+		-- No terminal yet -> create one
+		vim.cmd("split | resize 20 | terminal")
+		term_buf = vim.api.nvim_get_current_buf()
+		term_win = vim.api.nvim_get_current_win()
+	end
+
+	vim.cmd("startinsert")
+end
+
 -- ==================
 -- Keybindings
 -- ==================
@@ -137,7 +153,7 @@ vim.keymap.set("i", "jk", "<Esc>", opts)
 -- buffer
 vim.keymap.set("n", "<Leader>q", ":bd!<CR>", opts)
 vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
-vim.keymap.set("n", "<Leader><Leader>", ":b#<CR>", opts)
+vim.keymap.set("n", "<Leader><Tab>", ":b#<CR>", opts)
 
 -- higligh search and words under cursor
 vim.keymap.set("n", "<Leader>/", ":set hlsearch!<CR>", opts)
@@ -148,18 +164,14 @@ vim.keymap.set("n", "<Leader>e", ":Exp<CR>", opts)
 -- reload nvim config
 vim.keymap.set("n", "<Leader>r", ":so $MYVIMRC<CR>", opts)
 
--- windows
-vim.keymap.set("n", "<Leader>c", ":wincmd c<CR>", opts)
-vim.keymap.set("n", "<Leader><Tab>", ":wincmd w<CR>", opts)
-
 -- custom scripts keys
 vim.keymap.set("n", "<Leader>=", format_file, opts)
 vim.keymap.set("n", "<Leader>E", vim.diagnostic.setqflist)
 vim.keymap.set("n", "<F6>", spell_check, opts)
 
 -- terminal keymaps
-vim.keymap.set("n", "<A-CR>", ":split | resize 20 | term<CR>A", opts)
-vim.keymap.set("t", "<A-space>", "<C-\\><C-n>", opts)
+vim.keymap.set({ "n", "t" }, "<C-CR>", toggle_terminal, opts)
+vim.keymap.set("t", "<C-space>", "<C-\\><C-n>", opts)
 
 -- Select
 vim.keymap.set({ "n", "v" }, "<Leader>;", "V", opts)
@@ -171,8 +183,8 @@ vim.keymap.set("v", "<A-.>", ":copy . -1<CR>gv", opts)
 vim.keymap.set("i", "<A-.>", "<C-o>:copy .<CR>", opts)
 
 -- Newline while in insert mode
-vim.keymap.set({ "i", "n" }, "<C-[>", "<Esc>O", opts)
-vim.keymap.set({ "i", "n" }, "<C-]>", "<Esc>o", opts)
+vim.keymap.set({ "i", "n" }, "<A-[>", "<Esc>O", opts)
+vim.keymap.set({ "i", "n" }, "<A-]>", "<Esc>o", opts)
 
 -- Move line up/down
 vim.keymap.set("n", "<A-j>", ":move .+1<CR>==", opts)
@@ -199,6 +211,7 @@ vim.keymap.set("n", "N", "Nzzzv", opts)
 vim.keymap.set("n", "<Leader>ff", ":FzfLua files<CR>", opts)
 vim.keymap.set("n", "<Leader>fb", ":FzfLua buffers<CR>", opts)
 vim.keymap.set("n", "<Leader>f/", ":FzfLua lines<CR>", opts)
+vim.keymap.set("n", "<Leader>fm", ":FzfLua marks<CR>", opts)
 vim.keymap.set("n", "<Leader>fg", ":FzfLua live_grep<CR>", opts)
 vim.keymap.set("n", "<Leader>fG", ":FzfLua global<CR>", opts)
 vim.keymap.set("n", "<Leader>fr", ":FzfLua lsp_references<CR>", opts)
