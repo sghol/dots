@@ -49,7 +49,7 @@ vim.opt.arabicshape = true
 
 -- color
 vim.opt.background = "dark"
-vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#FCE094", fg = "#07080D" })
+vim.cmd.colorscheme("darkland")
 
 -- ======================
 -- COMMANDS / FUNCTIONS
