@@ -63,6 +63,8 @@ set -x PATH $PATH $XDG_DATA_HOME/uv/tools
 set -x PATH $PATH $XDG_DATA_HOME/npm/global/bin
 set -x PATH $PATH $GOPATH/bin
 
+export QT_QPA_PLATFORMTHEME=qt6ct
+
 # NPM
 set -x NPM_CONFIG_PREFIX $XDG_DATA_HOME/npm/global
 

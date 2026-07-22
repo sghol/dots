@@ -7,13 +7,14 @@ end
 vim.g.colors_name = "darkland"
 
 local black = "#000000"
-local alt_black = "#252525"
+local alt_black = "#292929"
 local white = "#f5f5f5"
 local dim_gray = "#696969"
+local silver = "#c0c0c0"
 local light_green = "#98FB98"
 local yellow = "#FFFF00"
 local red = "#FF4500"
-local hint = "#00FFFF"
+local aqua = "#00FFFF"
 
 local theme = {
 	-- black Indicators
@@ -23,7 +24,9 @@ local theme = {
 	ColorColumn = { link = "CursorLine" },
 
 	StatusLine = { bg = dim_gray },
-	Directory = { fg = hint },
+	Directory = { fg = aqua },
+
+	EndOfBuffer = { fg=dim_gray},
 
 	-- mini statusliine
 	MiniStatuslineModeNormal = { fg = black, bg = white },
@@ -83,11 +86,10 @@ local theme = {
 	Comment = { fg = light_green },
 	SpecialComment = { link = "Comment" },
 
-	-- Comma
+	-- Special, comma
 	Special = { fg = white },
 	LineNr = { link = "Normal" },
 	Whitespace = { link = "Normal" },
-	EndOfBuffer = { link = "Normal" },
 	PreCondit = { link = "Normal" },
 
 	-- String
@@ -105,11 +107,11 @@ local theme = {
 	IncSearch = { link = "Search" },
 	Substitute = { link = "Search" },
 
-	-- Error
-	Error = { fg = red },
-	ErrorMsg = { link = "Error" },
-	WarningMsg = { link = "Error" },
+	-- spell
 	SpellBad = { sp = red, undercurl = true },
+
+    -- ui
+	FloatBorder = { fg = white },
 
 	-- Visual
 	Visual = { bg = dim_gray },
@@ -126,16 +128,34 @@ local theme = {
 	-- Lua
 	luaTable = { link = "Normal" },
 
+	-- Error
+	Error = { fg = red },
+	ErrorMsg = { link = "Error" },
+
+	-- Warn
+	Warning = { fg = yellow },
+	WarningMsg = { link = "Warning" },
+
+	-- Info / Hint
+	Info = { fg = aqua },
+	Hint = { fg = aqua },
+
 	-- LSP
-	DiagnosticWarn = { fg = yellow },
-	DiagnosticHint = { fg = hint },
-	FloatBorder = { fg = white },
-	DiagnosticUnnecessary = { fg = white },
+	-- diagnostic warning
+	DiagnosticWarn = { link = "Warning" },
+	DiagnosticHint = { link = "Hint" },
+
 	-- error
-	DiagnosticFloatingError = { fg = red },
-	DiagnosticUnderlineError = { sp = red },
+	DiagnosticUnnecessary = { sp = white, fg = silver },
+
+	-- diagnostics underline
+	DiagnosticUnderlineError = { sp = red, underline = true },
+	DiagnosticUnderlineHint = { sp = silver, underline = true },
+
+	-- diagnostic error
 	DiagnosticSignError = { link = "Error" },
 	DiagnosticVirtualTextError = { link = "Error" },
+	DiagnosticFloatingError = { link = "Error" },
 
 	-- Treesitter
 	["@variable"] = { link = "Normal" },

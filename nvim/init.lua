@@ -8,8 +8,9 @@ vim.opt.swapfile = false
 
 vim.opt.wrap = false
 vim.opt.guicursor = ""
-vim.g.netrw_banner = 0
 vim.opt.laststatus = 3
+vim.g.netrw_banner = 0
+vim.g.netrw_altfile = 1 -- don't add netrw to alt buf
 
 -- scroll
 vim.opt.scrolloff = 8
@@ -61,6 +62,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- create terminal on entering neovim
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		vim.cmd("below terminal")
+		vim.cmd("mark T")
+		vim.api.nvim_buf_set_name(0, "Terminal")
+		vim.cmd("hide")
+	end,
+})
+
 -- file specific configs
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "javascript", "typescript", "html", "css" },
@@ -88,7 +99,6 @@ local function format_file()
 		sh = "shfmt -i 2 -ci -s -w",
 		bash = "shfmt -i 2 -ci -s -w",
 	}
-
 	local fmt = formatters[ft]
 	if fmt then
 		vim.cmd("silent !" .. fmt .. " %")
@@ -137,6 +147,11 @@ local function toggle_terminal()
 	end
 
 	vim.cmd("startinsert")
+end
+
+-- fzf open picker in current working directory
+local function fzf_files_in_cwd()
+	require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") })
 end
 
 -- ==================
@@ -216,6 +231,7 @@ vim.keymap.set("n", "<Leader>fg", ":FzfLua live_grep<CR>", opts)
 vim.keymap.set("n", "<Leader>fG", ":FzfLua global<CR>", opts)
 vim.keymap.set("n", "<Leader>fr", ":FzfLua lsp_references<CR>", opts)
 vim.keymap.set("n", "<Leader>fd", ":FzfLua lsp_definitions<CR>", opts)
+vim.keymap.set("n", "<Leader>f-", fzf_files_in_cwd, opts)
 
 -- ==================
 -- Plugins

@@ -71,7 +71,7 @@ export PIP_INDEX_URL=https://mirror2.chabokan.net/pypi/simple/
 # composer
 export COMPOSER_MIRROR_URL=https://mirror.chabokan.net/repository/composer-proxy/
 
-export QT_QPA_PLATFORMTHEME=gtk3
+export QT_QPA_PLATFORMTHEME=qt6ct
 export MANPAGER="nvim +Man!"
 
 # History
