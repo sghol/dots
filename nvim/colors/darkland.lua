@@ -27,6 +27,7 @@ local theme = {
 	Directory = { fg = aqua },
 
 	EndOfBuffer = { fg=dim_gray},
+    WinSeparator = { fg=dim_gray},
 
 	-- mini statusliine
 	MiniStatuslineModeNormal = { fg = black, bg = white },
