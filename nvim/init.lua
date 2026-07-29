@@ -118,6 +118,7 @@ local function spell_check()
 end
 
 -- highlight words same as word under cursor
+
 local function hi_under_cursor()
 	local word = vim.fn.expand("<cword>")
 	vim.cmd("let @/='\\V" .. word .. "'")
@@ -171,10 +172,7 @@ vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
 vim.keymap.set("n", "<Leader><Tab>", ":b#<CR>", opts)
 
 -- higligh search and words under cursor
-vim.keymap.set("n", "<Leader>/", ":set hlsearch!<CR>", opts)
 vim.keymap.set("n", "<F8>", hi_under_cursor, opts)
--- explorer
-vim.keymap.set("n", "<Leader>e", ":Exp<CR>", opts)
 
 -- reload nvim config
 vim.keymap.set("n", "<Leader>r", ":so $MYVIMRC<CR>", opts)
@@ -215,6 +213,7 @@ vim.keymap.set({ "n", "v" }, "<Leader>y", '"+y', opts)
 vim.keymap.set({ "n", "v" }, "<Leader>p", '"+p', opts)
 vim.keymap.set({ "n", "v" }, "<Leader>P", '"+P', opts)
 vim.keymap.set({ "n", "v" }, "<Leader>d", '"_d', opts)
+vim.keymap.set({ "n", "v" }, "<Leader>dd", '"_dd', opts)
 
 -- Center me
 vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
@@ -224,14 +223,16 @@ vim.keymap.set("n", "N", "Nzzzv", opts)
 
 -- mini pick
 vim.keymap.set("n", "<Leader>ff", ":FzfLua files<CR>", opts)
-vim.keymap.set("n", "<Leader>fb", ":FzfLua buffers<CR>", opts)
-vim.keymap.set("n", "<Leader>f/", ":FzfLua lines<CR>", opts)
-vim.keymap.set("n", "<Leader>fm", ":FzfLua marks<CR>", opts)
+vim.keymap.set("n", "<Leader>b", ":FzfLua buffers<CR>", opts)
+vim.keymap.set("n", "<Leader>/", ":FzfLua lines<CR>", opts)
+vim.keymap.set("n", "<Leader>.", fzf_files_in_cwd, opts)
 vim.keymap.set("n", "<Leader>fg", ":FzfLua live_grep<CR>", opts)
 vim.keymap.set("n", "<Leader>fG", ":FzfLua global<CR>", opts)
-vim.keymap.set("n", "<Leader>fr", ":FzfLua lsp_references<CR>", opts)
-vim.keymap.set("n", "<Leader>fd", ":FzfLua lsp_definitions<CR>", opts)
-vim.keymap.set("n", "<Leader>f-", fzf_files_in_cwd, opts)
+vim.keymap.set("n", "<Leader>gr", ":FzfLua lsp_references<CR>", opts)
+vim.keymap.set("n", "<Leader>gd", ":FzfLua lsp_definitions<CR>", opts)
+
+vim.keymap.set("n", "<Leader>e", ":Oil<CR>", opts)
+
 
 -- ==================
 -- Plugins
@@ -239,6 +240,7 @@ vim.keymap.set("n", "<Leader>f-", fzf_files_in_cwd, opts)
 -- Install packages
 vim.pack.add({
 	"https://github.com/ibhagwan/fzf-lua",
+	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/nvim-mini/mini.icons",
 	"https://github.com/nvim-mini/mini.statusline",
 	"https://github.com/mg979/vim-visual-multi",
@@ -250,6 +252,7 @@ require("mini.icons").setup()
 require("mini.statusline").setup()
 require("neoscroll").setup()
 require("fzf-lua").setup({ { "ivy", "hide" } })
+require("oil").setup()
 
 -- ==================
 -- LSP
