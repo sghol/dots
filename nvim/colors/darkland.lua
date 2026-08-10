@@ -26,8 +26,8 @@ local theme = {
 	StatusLine = { bg = dim_gray },
 	Directory = { fg = aqua },
 
-	EndOfBuffer = { fg=dim_gray},
-    WinSeparator = { fg=dim_gray},
+	EndOfBuffer = { fg = dim_gray },
+	WinSeparator = { fg = dim_gray },
 
 	-- mini statusliine
 	MiniStatuslineModeNormal = { fg = black, bg = white },
@@ -108,10 +108,15 @@ local theme = {
 	IncSearch = { link = "Search" },
 	Substitute = { link = "Search" },
 
+	-- Tabs
+	TabLine = { fg = silver, bg = alt_black },
+	TabLineSel = { fg = black, bg = white },
+	TabLineFill = { fg = silver, bg = black },
+
 	-- spell
 	SpellBad = { sp = red, undercurl = true },
 
-    -- ui
+	-- ui
 	FloatBorder = { fg = white },
 
 	-- Visual

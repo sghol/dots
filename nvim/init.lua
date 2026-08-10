@@ -9,15 +9,13 @@ vim.opt.swapfile = false
 vim.opt.wrap = false
 vim.opt.guicursor = ""
 vim.opt.laststatus = 3
-vim.g.netrw_banner = 0
-vim.g.netrw_altfile = 1 -- don't add netrw to alt buf
 
 -- scroll
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.smoothscroll = true
 
--- Search --
+-- search
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
@@ -118,11 +116,17 @@ local function spell_check()
 end
 
 -- highlight words same as word under cursor
-
+local hlsearch_enabled = vim.o.hlsearch
 local function hi_under_cursor()
-	local word = vim.fn.expand("<cword>")
-	vim.cmd("let @/='\\V" .. word .. "'")
-	vim.cmd("set hlsearch")
+	if hlsearch_enabled then
+		vim.cmd("set nohlsearch")
+	else
+		local word = vim.fn.expand("<cword>")
+		vim.cmd("let @/='\\V" .. word .. "'")
+		vim.cmd("set hlsearch")
+	end
+	-- update state
+	hlsearch_enabled = vim.o.hlsearch
 end
 
 -- Toggle a persistent terminal at the bottom
@@ -175,7 +179,7 @@ vim.keymap.set("n", "<Leader><Tab>", ":b#<CR>", opts)
 vim.keymap.set("n", "<F8>", hi_under_cursor, opts)
 
 -- reload nvim config
-vim.keymap.set("n", "<Leader>r", ":so $MYVIMRC<CR>", opts)
+vim.keymap.set("n", "<Leader>R", ":so $MYVIMRC<CR>", opts)
 
 -- custom scripts keys
 vim.keymap.set("n", "<Leader>=", format_file, opts)
@@ -212,27 +216,26 @@ vim.keymap.set("n", "<Leader>Y", '"+y$', opts)
 vim.keymap.set({ "n", "v" }, "<Leader>y", '"+y', opts)
 vim.keymap.set({ "n", "v" }, "<Leader>p", '"+p', opts)
 vim.keymap.set({ "n", "v" }, "<Leader>P", '"+P', opts)
-vim.keymap.set({ "n", "v" }, "<Leader>d", '"_d', opts)
-vim.keymap.set({ "n", "v" }, "<Leader>dd", '"_dd', opts)
+-- vim.keymap.set({ "n", "v" }, "<Leader>d", '"_d', opts)
+-- vim.keymap.set({ "n", "v" }, "<Leader>dd", '"_dd', opts)
 
--- Center me
+-- center me
 vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
 vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
 vim.keymap.set("n", "n", "nzzzv", opts)
 vim.keymap.set("n", "N", "Nzzzv", opts)
 
 -- mini pick
-vim.keymap.set("n", "<Leader>ff", ":FzfLua files<CR>", opts)
+vim.keymap.set("n", "<Leader>f", ":FzfLua files<CR>", opts)
 vim.keymap.set("n", "<Leader>b", ":FzfLua buffers<CR>", opts)
 vim.keymap.set("n", "<Leader>/", ":FzfLua lines<CR>", opts)
 vim.keymap.set("n", "<Leader>.", fzf_files_in_cwd, opts)
-vim.keymap.set("n", "<Leader>fg", ":FzfLua live_grep<CR>", opts)
-vim.keymap.set("n", "<Leader>fG", ":FzfLua global<CR>", opts)
-vim.keymap.set("n", "<Leader>gr", ":FzfLua lsp_references<CR>", opts)
-vim.keymap.set("n", "<Leader>gd", ":FzfLua lsp_definitions<CR>", opts)
+vim.keymap.set("n", "<Leader>g", ":FzfLua live_grep<CR>", opts)
+vim.keymap.set("n", "<Leader>G", ":FzfLua global<CR>", opts)
+vim.keymap.set("n", "<Leader>r", ":FzfLua lsp_references<CR>", opts)
+vim.keymap.set("n", "<Leader>d", ":FzfLua diagnostics_document<CR>", opts)
 
 vim.keymap.set("n", "<Leader>e", ":Oil<CR>", opts)
-
 
 -- ==================
 -- Plugins
