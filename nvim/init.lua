@@ -175,6 +175,12 @@ vim.keymap.set("n", "<Leader>q", ":bd!<CR>", opts)
 vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
 vim.keymap.set("n", "<Leader><Tab>", ":b#<CR>", opts)
 
+-- tab
+vim.keymap.set("n", "<Leader>n", ":tabnew<CR>", opts)
+vim.keymap.set("n", "<A-1>", "1gt<CR>", opts)
+vim.keymap.set("n", "<A-2>", "2gt<CR>", opts)
+vim.keymap.set("n", "<A-3>", "3gt<CR>", opts)
+
 -- higligh search and words under cursor
 vim.keymap.set("n", "<F8>", hi_under_cursor, opts)
 
