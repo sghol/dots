@@ -15,7 +15,7 @@ x-scheme-handler/oblivion=oblivion-desktop.desktop
 application/x-zerosize=libreoffice-writer.desktop
 
 [Added Associations]
-text/plain=emacsclient.desktop;firefox.desktop;org.gnome.gedit.desktop;nvim.desktop;
+text/plain=firefox.desktop;emacsclient.desktop;org.gnome.gedit.desktop;nvim.desktop;
 video/x-sgi-movie=vlc.desktop;
 x-scheme-handler/tonsite=org.telegram.desktop.desktop;userapp-Telegram Desktop-5O2YT2.desktop;
 x-scheme-handler/tg=userapp-Telegram Desktop-A3OYT2.desktop;

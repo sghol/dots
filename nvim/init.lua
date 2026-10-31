@@ -60,16 +60,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- create terminal on entering neovim
-vim.api.nvim_create_autocmd("VimEnter", {
-	callback = function()
-		vim.cmd("below terminal")
-		vim.cmd("mark T")
-		vim.api.nvim_buf_set_name(0, "Terminal")
-		vim.cmd("hide")
-	end,
-})
-
 -- file specific configs
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "javascript", "typescript", "html", "css" },
