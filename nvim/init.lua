@@ -239,8 +239,7 @@ vim.keymap.set("n", "<Leader>e", ":Oil<CR>", opts)
 -- Install packages
 vim.pack.add({
 	"https://github.com/nvim-mini/mini.icons",
-	"https://github.com/nvim-mini/mini.statusline",
-	"https://github.com/nvim-mini/mini-git",
+    'https://github.com/nvim-lualine/lualine.nvim',
 	"https://github.com/ibhagwan/fzf-lua",
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/karb94/neoscroll.nvim",
@@ -248,8 +247,7 @@ vim.pack.add({
 })
 -- Load plugins
 require("mini.icons").setup()
-require("mini.statusline").setup()
-require("mini.git").setup()
+require('lualine').setup()
 require("neoscroll").setup()
 require("oil").setup()
 require("fzf-lua").setup({ { "ivy", "hide" } })
