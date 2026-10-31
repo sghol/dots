@@ -238,16 +238,16 @@ vim.keymap.set("n", "<Leader>e", ":Oil<CR>", opts)
 -- ==================
 -- Install packages
 vim.pack.add({
-	"https://github.com/nvim-mini/mini.icons",
-    'https://github.com/nvim-lualine/lualine.nvim',
+	"https://github.com/nvim-tree/nvim-web-devicons",
+	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/ibhagwan/fzf-lua",
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/karb94/neoscroll.nvim",
-    "https://github.com/mg979/vim-visual-multi",
+	"https://github.com/mg979/vim-visual-multi",
 })
 -- Load plugins
-require("mini.icons").setup()
-require('lualine').setup()
+require("nvim-web-devicons").setup()
+require("lualine").setup()
 require("neoscroll").setup()
 require("oil").setup()
 require("fzf-lua").setup({ { "ivy", "hide" } })
