@@ -18,7 +18,7 @@
     
     background = "#000000"
     foreground = "#E1E1E1"
-    frame_color = "#b4f6c0"
+    frame_color = "#ffffff"
     
     # Timeouts
     timeout = 10

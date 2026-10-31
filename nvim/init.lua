@@ -89,11 +89,11 @@ local function format_file()
 		lua = "stylua",
 		go = "go fmt",
 		sql = "pg_format -f 2 -u 2 -o",
-		javascript = "prettier --write",
+		javascript = "prettier --write --print-width 99",
 		typescript = "prettier --write",
 		html = "prettier --write",
-		json = "prettier --write",
 		css = "prettier --write",
+		json = "prettier --write",
 		sh = "shfmt -i 2 -ci -s -w",
 		bash = "shfmt -i 2 -ci -s -w",
 	}
@@ -176,7 +176,6 @@ vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
 vim.keymap.set("n", "<Leader><Tab>", ":b#<CR>", opts)
 
 -- tab
-vim.keymap.set("n", "<Leader>n", ":tabnew<CR>", opts)
 vim.keymap.set("n", "<A-1>", "1gt<CR>", opts)
 vim.keymap.set("n", "<A-2>", "2gt<CR>", opts)
 vim.keymap.set("n", "<A-3>", "3gt<CR>", opts)
@@ -193,6 +192,7 @@ vim.keymap.set("n", "<Leader>E", vim.diagnostic.setqflist)
 vim.keymap.set("n", "<F6>", spell_check, opts)
 
 -- terminal keymaps
+vim.keymap.set({ "n" }, "<Leader>T", ":tabnew<CR>:terminal<CR>GA", opts)
 vim.keymap.set({ "n", "t" }, "<C-CR>", toggle_terminal, opts)
 vim.keymap.set("t", "<C-space>", "<C-\\><C-n>", opts)
 
@@ -222,8 +222,8 @@ vim.keymap.set("n", "<Leader>Y", '"+y$', opts)
 vim.keymap.set({ "n", "v" }, "<Leader>y", '"+y', opts)
 vim.keymap.set({ "n", "v" }, "<Leader>p", '"+p', opts)
 vim.keymap.set({ "n", "v" }, "<Leader>P", '"+P', opts)
--- vim.keymap.set({ "n", "v" }, "<Leader>d", '"_d', opts)
--- vim.keymap.set({ "n", "v" }, "<Leader>dd", '"_dd', opts)
+vim.keymap.set({ "n", "v" }, "<Leader>d", '"_d', opts)
+vim.keymap.set({ "n", "v" }, "<Leader>dd", '"_dd', opts)
 
 -- center me
 vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
@@ -239,7 +239,7 @@ vim.keymap.set("n", "<Leader>.", fzf_files_in_cwd, opts)
 vim.keymap.set("n", "<Leader>g", ":FzfLua live_grep<CR>", opts)
 vim.keymap.set("n", "<Leader>G", ":FzfLua global<CR>", opts)
 vim.keymap.set("n", "<Leader>r", ":FzfLua lsp_references<CR>", opts)
-vim.keymap.set("n", "<Leader>d", ":FzfLua diagnostics_document<CR>", opts)
+vim.keymap.set("n", "<Leader>D", ":FzfLua diagnostics_document<CR>", opts)
 
 vim.keymap.set("n", "<Leader>e", ":Oil<CR>", opts)
 
@@ -248,20 +248,21 @@ vim.keymap.set("n", "<Leader>e", ":Oil<CR>", opts)
 -- ==================
 -- Install packages
 vim.pack.add({
-	"https://github.com/ibhagwan/fzf-lua",
-	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/nvim-mini/mini.icons",
 	"https://github.com/nvim-mini/mini.statusline",
-	"https://github.com/mg979/vim-visual-multi",
+	"https://github.com/nvim-mini/mini-git",
+	"https://github.com/ibhagwan/fzf-lua",
+	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/karb94/neoscroll.nvim",
+    "https://github.com/mg979/vim-visual-multi",
 })
-
 -- Load plugins
 require("mini.icons").setup()
 require("mini.statusline").setup()
+require("mini.git").setup()
 require("neoscroll").setup()
-require("fzf-lua").setup({ { "ivy", "hide" } })
 require("oil").setup()
+require("fzf-lua").setup({ { "ivy", "hide" } })
 
 -- ==================
 -- LSP
