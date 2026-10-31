@@ -123,12 +123,12 @@ mouse = [
 # ---------------
 
 color = {
-    "bg": "#000000",
+    "bg": "#14161B",
     "alt_bg": "#333333",
-    "fg": "#ffffff",
-    "active": "#ffffff",
+    "fg": "#EEF1F8",
+    "active": "#EEF1F8",
     "inactive": "#aaaaaa",
-    "primary": "#ffffff",
+    "primary": "#EEF1F8",
     "secondary": "#aaaaaa",
 }
 
@@ -186,6 +186,12 @@ floating_layout = layout.Floating(
 # ---------------------
 #    SCREEN WIDGETS
 # ---------------------
+widget_defaults = dict(
+    font="Terminess Nerd Font Mono",
+    fontsize=12,
+)
+
+
 def sep(bg=color.get("bg"), pad=2):
     return widget.Sep(background=bg, padding=pad, linewidth=0)
 
