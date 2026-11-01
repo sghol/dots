@@ -61,6 +61,7 @@ keys = [
     Key(WIN_SHT, "q", lazy.shutdown()),
     # Run specific program
     Key(WIN, "Return", lazy.spawn(TERMINAL)),
+    Key(WIN_SHT, "Return", lazy.spawn([TERMINAL, "nvim", "-c", "terminal", "-c", "startinsert"])),
     Key(WIN, "p", lazy.spawn("launcher")),
     Key(WIN_SHT, "p", lazy.spawn("pf")),
     Key(WIN, "Print", lazy.spawn("shot")),

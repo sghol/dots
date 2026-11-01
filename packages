@@ -616,6 +616,9 @@ tree-sitter-vim
 tree-sitter-vimdoc
 tslib
 ttf-liberation
+ttf-opensans
+ttf-terminus-nerd
+ttf-monaspace-variable
 tumbler
 twolame
 tzdata
