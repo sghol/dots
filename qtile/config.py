@@ -61,7 +61,11 @@ keys = [
     Key(WIN_SHT, "q", lazy.shutdown()),
     # Run specific program
     Key(WIN, "Return", lazy.spawn(TERMINAL)),
-    Key(WIN_SHT, "Return", lazy.spawn([TERMINAL, "nvim", "-c", "terminal", "-c", "startinsert"])),
+    Key(
+        WIN_SHT,
+        "Return",
+        lazy.spawn([TERMINAL, "nvim", "-c", "terminal", "-c", "startinsert"]),
+    ),
     Key(WIN, "p", lazy.spawn("launcher")),
     Key(WIN_SHT, "p", lazy.spawn("pf")),
     Key(WIN, "Print", lazy.spawn("shot")),
@@ -125,12 +129,18 @@ mouse = [
 
 color = {
     "bg": "#14161B",
-    "alt_bg": "#333333",
+    "alt_bg": "#383838",
     "fg": "#EEF1F8",
     "active": "#EEF1F8",
     "inactive": "#aaaaaa",
     "primary": "#EEF1F8",
     "secondary": "#aaaaaa",
+    "pink": "#FFCAFF",
+    "yellow": "#FCE094",
+    "cyan": "#8CF8F7",
+    "green": "#B4F6C0",
+    "red": "#FFC0B9",
+    "blue": "#A6DBFF",
 }
 
 # ------------------
@@ -248,21 +258,21 @@ bar_widgets = [
         interface="wlan0",
         format="{essid}",
         background=color.get("alt_bg", "#ff0000"),
-        foreground=color.get("fg", "#ff0000"),
+        foreground=color.get("blue", "#ff0000"),
         padding=10,
     ),
     sep(),
     widget.Net(
         prefix="k",
         background=color.get("alt_bg", "#ff0000"),
-        foreground=color.get("fg", "#ff0000"),
+        foreground=color.get("yellow", "#ff0000"),
         format="{down:1.2f}{down_suffix} ↓↑ {up:1.2f}{up_suffix}",
         padding=10,
     ),
     sep(),
     widget.KeyboardLayout(
         background=color.get("alt_bg", "#ff0000"),
-        foreground=color.get("fg", "#ff0000"),
+        foreground=color.get("pink", "#ff0000"),
         configured_keyboards=["us", "ir"],
         option="ctrl:nocaps,ctrl:menu_rctrl",
         padding=10,
@@ -270,13 +280,13 @@ bar_widgets = [
     sep(),
     widget.Volume(
         background=color.get("alt_bg", "#ff0000"),
-        foreground=color.get("fg", "#ff0000"),
+        foreground=color.get("pink", "#ff0000"),
         padding=10,
     ),
     sep(),
     widget.Clock(
         background=color.get("alt_bg", "#ff0000"),
-        foreground=color.get("fg", "#ff0000"),
+        foreground=color.get("green", "#ff0000"),
         format="%A %m-%d | %H:%M",
         padding=10,
     ),
@@ -290,7 +300,7 @@ bar_widgets = [
 bar_widgets = bar_widgets.copy()
 bar = bar.Bar(
     bar_widgets,
-    border_width=3,
+    border_width=[0, 0, 3, 0],
     border_color=color["bg"],
     background=color.get("bg"),
     size=20,
