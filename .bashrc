@@ -61,7 +61,6 @@ export GOSUMDB=off
 
 # NPM
 # export NPM_CONFIG_REGISTRY=https://mirror2.chabokan.net/npm/
-export PIP_INDEX_URL=https://mirror.chabokan.net/repository/pypi-proxy/simple
 export COMPOSER_MIRROR_URL=https://mirror.chabokan.net/repository/composer-proxy/
 export NPM_CONFIG_PREFIX=$XDG_DATA_HOME/npm/global
 

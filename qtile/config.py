@@ -61,11 +61,11 @@ keys = [
     Key(WIN_SHT, "q", lazy.shutdown()),
     # Run specific program
     Key(WIN, "Return", lazy.spawn(TERMINAL)),
-    Key(
-        WIN_SHT,
-        "Return",
-        lazy.spawn([TERMINAL, "nvim", "-c", "terminal", "-c", "startinsert"]),
-    ),
+    # Key(
+    #     WIN_SHT,
+    #     "Return",
+    #     lazy.spawn([TERMINAL, "nvim", "-c", "terminal", "-c", "startinsert"]),
+    # ),
     Key(WIN, "p", lazy.spawn("launcher")),
     Key(WIN_SHT, "p", lazy.spawn("pf")),
     Key(WIN, "Print", lazy.spawn("shot")),
@@ -128,19 +128,17 @@ mouse = [
 # ---------------
 
 color = {
-    "bg": "#14161B",
-    "alt_bg": "#383838",
-    "fg": "#EEF1F8",
-    "active": "#EEF1F8",
-    "inactive": "#aaaaaa",
-    "primary": "#EEF1F8",
-    "secondary": "#aaaaaa",
-    "pink": "#FFCAFF",
+    "bg": "#07080D",
+    "alt_bg": "#4f5258",
+    "white": "#EEF1F8",
+    "gray": "#9b9ea4",
+    "magenta": "#FFCAFF",
     "yellow": "#FCE094",
     "cyan": "#8CF8F7",
     "green": "#B4F6C0",
     "red": "#FFC0B9",
     "blue": "#A6DBFF",
+    "primary": "#EEF1F8",
 }
 
 # ------------------
@@ -156,7 +154,7 @@ groups = [Group(name=name, label=name) for name in ["1", "2", "3", "9", "0"]]
 layout_config = dict(
     border_focus=color.get("primary", "#ff0000"),
     border_normal=color.get("bg", "#ff0000"),
-    border_focus_stack=color.get("secondary", "#ff0000"),
+    border_focus_stack=color.get("gray", "#ff0000"),
     border_normal_stack=color.get("bg", "#ff0000"),
 )
 
@@ -200,6 +198,7 @@ floating_layout = layout.Floating(
 widget_defaults = dict(
     font="Terminess Nerd Font Mono",
     fontsize=12,
+    padding=8,
 )
 
 
@@ -211,84 +210,86 @@ bar_widgets = [
     widget.GroupBox(
         highlight_method="block",
         background=color.get("alt_bg", "#00ff00"),
-        active=color.get("active", "#ff0000"),
-        inactive=color.get("inactive", "#0000ff"),
+        active=color.get("white", "#ff0000"),
+        inactive=color.get("gray", "#0000ff"),
         this_current_screen_border=color.get("primary", "#ffff00"),
         block_highlight_text_color=color.get("bg", "#ff00ff"),
         urgent_border=color.get("alt_bg", "#00ff00"),
-        urgent_text=color.get("active", "#ff0000"),
+        urgent_text=color.get("white", "#ff0000"),
+        padding=6,
     ),
     sep(),
     widget.CurrentLayout(
         background=color.get("alt_bg", "#ff0000"),
-        foreground=color.get("fg", "#ff0000"),
+        foreground=color.get("white", "#ff0000"),
     ),
     sep(),
     widget.WindowCount(
         background=color.get("alt_bg", "#ff0000"),
-        foreground=color.get("fg", "#ff0000"),
+        foreground=color.get("white", "#ff0000"),
     ),
     widget.WindowName(
-        foreground=color.get("fg", "#ff0000"),
+        foreground=color.get("white", "#ff0000"),
     ),
     widget.Spacer(),
     widget.CheckUpdates(
-        background=color.get("alt_bg", "#ff0000"),
-        foreground=color.get("fg", "#ff0000"),
-        colour_have_updates=color.get("fg", "#ff0000"),
-        colour_no_updates=color.get("fg", "#ff0000"),
+        background=color.get("blue", "#ff0000"),
+        foreground=color.get("alt_bg", "#ff0000"),
+        colour_have_updates=color.get("white", "#ff0000"),
+        colour_no_updates=color.get("white", "#ff0000"),
         no_update_string="",
     ),
     sep(),
-    sep(bg=color.get("bg", "#ff0000"), pad=0),
     widget.Pomodoro(
-        background=color.get("alt_bg", "#ff0000"),
-        foreground=color.get("fg", "#ff0000"),
-        color_active=color.get("active", "#ff0000"),
-        color_inactive=color.get("fg", "#ff0000"),
-        color_break=color.get("active", "#ff0000"),
+        background=color.get("red", "#ff0000"),
+        foreground=color.get("alt_bg", "#ff0000"),
+        color_active=color.get("alt_bg", "#ff0000"),
+        color_inactive=color.get("alt_bg", "#ff0000"),
+        color_break=color.get("alt_bg", "#ff0000"),
         length_pomodori=55,
         length_short_break=5,
         length_long_break=5,
         prefix_inactive="POMO",
-        padding=10,
     ),
     sep(),
     widget.Wlan(
         interface="wlan0",
         format="{essid}",
-        background=color.get("alt_bg", "#ff0000"),
-        foreground=color.get("blue", "#ff0000"),
-        padding=10,
+        background=color.get("green", "#ff0000"),
+        foreground=color.get("alt_bg", "#ff0000"),
     ),
-    sep(),
     widget.Net(
         prefix="k",
-        background=color.get("alt_bg", "#ff0000"),
-        foreground=color.get("yellow", "#ff0000"),
+        background=color.get("green", "#ff0000"),
+        foreground=color.get("alt_bg", "#ff0000"),
         format="{down:1.2f}{down_suffix} ↓↑ {up:1.2f}{up_suffix}",
-        padding=10,
     ),
     sep(),
     widget.KeyboardLayout(
-        background=color.get("alt_bg", "#ff0000"),
-        foreground=color.get("pink", "#ff0000"),
+        background=color.get("white", "#ff0000"),
+        foreground=color.get("alt_bg", "#ff0000"),
         configured_keyboards=["us", "ir"],
         option="ctrl:nocaps,ctrl:menu_rctrl",
-        padding=10,
     ),
     sep(),
     widget.Volume(
-        background=color.get("alt_bg", "#ff0000"),
-        foreground=color.get("pink", "#ff0000"),
-        padding=10,
+        background=color.get("magenta", "#ff0000"),
+        foreground=color.get("alt_bg", "#ff0000"),
+    ),
+    sep(),
+    widget.OpenWeather(
+        background=color.get("cyan", "#ff0000"),
+        foreground=color.get("alt_bg", "#ff0000"),
+        app_key="c40100671047afc85a4513c9a18d59a2",
+        cityid="143083",
+        format="{icon} {main_temp}°{units_temperature} {weather_details}",
+        language="en",
     ),
     sep(),
     widget.Clock(
-        background=color.get("alt_bg", "#ff0000"),
-        foreground=color.get("green", "#ff0000"),
+        background=color.get("yellow", "#ff0000"),
+        foreground=color.get("alt_bg", "#ff0000"),
         format="%A %m-%d | %H:%M",
-        padding=10,
     ),
     sep(),
     widget.Systray(
@@ -300,7 +301,7 @@ bar_widgets = [
 bar_widgets = bar_widgets.copy()
 bar = bar.Bar(
     bar_widgets,
-    border_width=[0, 0, 3, 0],
+    border_width=[0, 0, 1, 0],
     border_color=color["bg"],
     background=color.get("bg"),
     size=20,
