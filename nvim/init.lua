@@ -61,6 +61,8 @@ vim.api.nvim_set_hl(0, "StatusLineNormalMode", { bg = "#E0E2EA", fg = "#14161B",
 vim.api.nvim_set_hl(0, "StatusLineInsertMode", { bg = "#b4f6c0", fg = "#14161B", bold = true })
 vim.api.nvim_set_hl(0, "StatusLineVisualMode", { bg = "#A6DBFF", fg = "#14161B", bold = true })
 vim.api.nvim_set_hl(0, "StatusLineTerminalMode", { bg = "#FCE094", fg = "#14161B", bold = true })
+vim.api.nvim_set_hl(0, "StatusLineFilePath", { bg = "#14161B", fg = "#E0E2EA" })
+vim.api.nvim_set_hl(0, "StatusLineBranch", { bg = "#14161B", fg = "#b4f6c0" })
 
 -- ======================
 -- Status & Tab line
@@ -96,10 +98,11 @@ local mode_name = {
 
 vim.my_statusline = function()
 	local m = vim.fn.mode():sub(1, 1)
-	local hl = mode_group[m] or "%#StatusLineNormalMode#"
+	local mode = mode_group[m] or "%#StatusLineNormalMode#"
 	local name = mode_name[m] or m:upper()
-	local branch = vim._git_branch ~= "" and ("  " .. vim._git_branch) or ""
-	return hl .. " " .. name .. " %#StatusLine# %f" .. branch .. " %=  %y  %l:%L "
+	local branch = vim._git_branch ~= "" and ("| %#StatusLineBranch#" .. vim._git_branch .. "%#StatusLine#") or ""
+	local filePath = "%#StatusLineFilePath# %f %#StatusLine#"
+	return mode .. " " .. name .. filePath .. branch .. " %=  %y %c | %l/%L "
 end
 vim.o.statusline = "%!v:lua.vim.my_statusline()"
 
