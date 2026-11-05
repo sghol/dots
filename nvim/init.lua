@@ -52,9 +52,11 @@ vim.o.statusline = "%#StatusLineNormalMode#%{mode()}%#StatusLine# %f  %=  %y  %l
 -- color
 vim.opt.background = "dark"
 vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#FCE094", fg = "#000000" })
+vim.api.nvim_set_hl(0, "TabLine", { bg = "#14161B", fg = "#9b9ea4" })
 vim.api.nvim_set_hl(0, "TabLineSel", { bg = "#E0E2EA", fg = "#2c2e33", bold = true })
 
 -- color for statusline mode
+vim.api.nvim_set_hl(0, "StatusLine", { bg = "#14161B", fg = "#E0E2EA" })
 vim.api.nvim_set_hl(0, "StatusLineNormalMode", { bg = "#E0E2EA", fg = "#14161B", bold = true })
 vim.api.nvim_set_hl(0, "StatusLineInsertMode", { bg = "#b4f6c0", fg = "#14161B", bold = true })
 vim.api.nvim_set_hl(0, "StatusLineVisualMode", { bg = "#A6DBFF", fg = "#14161B", bold = true })
@@ -99,7 +101,6 @@ vim.my_statusline = function()
 	local branch = vim._git_branch ~= "" and ("  " .. vim._git_branch) or ""
 	return hl .. " " .. name .. " %#StatusLine# %f" .. branch .. " %=  %y  %l:%L "
 end
-
 vim.o.statusline = "%!v:lua.vim.my_statusline()"
 
 -- tabline: filename + [+] for not saved file
