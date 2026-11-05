@@ -98,11 +98,11 @@ local mode_name = {
 
 vim.my_statusline = function()
 	local m = vim.fn.mode():sub(1, 1)
-	local mode = mode_group[m] or "%#StatusLineNormalMode#"
-	local name = mode_name[m] or m:upper()
+	local mode_hl = mode_group[m] or "%#StatusLineNormalMode#"
+	local mode_val = mode_hl .. " " .. mode_name[m] .. " "
 	local branch = vim._git_branch ~= "" and ("| %#StatusLineBranch#" .. vim._git_branch .. "%#StatusLine#") or ""
 	local filePath = "%#StatusLineFilePath# %f %#StatusLine#"
-	return mode .. " " .. name .. filePath .. branch .. " %=  %y %c | %l/%L "
+	return mode_val .. filePath .. branch .. " %=  %y %c | %l/%L "
 end
 vim.o.statusline = "%!v:lua.vim.my_statusline()"
 
