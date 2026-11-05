@@ -46,9 +46,77 @@ vim.opt.encoding = "utf-8"
 vim.opt.termbidi = true
 vim.opt.arabicshape = true
 
+-- statusline
+vim.o.statusline = "%#StatusLineNormalMode#%{mode()}%#StatusLine# %f  %=  %y  %l:%L "
+
 -- color
 vim.opt.background = "dark"
 vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#FCE094", fg = "#000000" })
+vim.api.nvim_set_hl(0, "TabLineSel", { bg = "#E0E2EA", fg = "#2c2e33", bold = true })
+
+-- color for statusline mode
+vim.api.nvim_set_hl(0, "StatusLineNormalMode", { bg = "#E0E2EA", fg = "#14161B", bold = true })
+vim.api.nvim_set_hl(0, "StatusLineInsertMode", { bg = "#b4f6c0", fg = "#14161B", bold = true })
+vim.api.nvim_set_hl(0, "StatusLineVisualMode", { bg = "#A6DBFF", fg = "#14161B", bold = true })
+vim.api.nvim_set_hl(0, "StatusLineTerminalMode", { bg = "#FCE094", fg = "#14161B", bold = true })
+
+-- ======================
+-- Status & Tab line
+-- ======================
+-- git branch (cached; refreshed on enter / dir change)
+vim._git_branch = ""
+local function refresh_git()
+	local out =
+		vim.fn.systemlist("git -C " .. vim.fn.shellescape(vim.fn.getcwd()) .. " branch --show-current 2>/dev/null")
+	vim._git_branch = (out[1] and out[1] ~= "") and out[1] or ""
+end
+refresh_git()
+vim.api.nvim_create_autocmd({ "BufEnter", "DirChanged" }, { callback = refresh_git })
+
+local mode_group = {
+	n = "%#StatusLineNormalMode#",
+	i = "%#StatusLineInsertMode#",
+	v = "%#StatusLineVisualMode#",
+	V = "%#StatusLineVisualMode#",
+	["\22"] = "%#StatusLineVisualMode#",
+	t = "%#StatusLineTerminalMode#",
+}
+local mode_name = {
+	n = "NORMAL",
+	i = "INSERT",
+	v = "VISUAL",
+	V = "V-LINE",
+	["\22"] = "V-BLOCK",
+	t = "TERMINAL",
+	R = "REPLACE",
+	c = "COMMAND",
+}
+
+vim.my_statusline = function()
+	local m = vim.fn.mode():sub(1, 1)
+	local hl = mode_group[m] or "%#StatusLineNormalMode#"
+	local name = mode_name[m] or m:upper()
+	local branch = vim._git_branch ~= "" and ("  " .. vim._git_branch) or ""
+	return hl .. " " .. name .. " %#StatusLine# %f" .. branch .. " %=  %y  %l:%L "
+end
+
+vim.o.statusline = "%!v:lua.vim.my_statusline()"
+
+-- tabline: filename + [+] for not saved file
+vim.my_tabline = function()
+	local out, cur = {}, vim.fn.tabpagenr()
+	for i = 1, vim.fn.tabpagenr("$") do
+		local buf = vim.fn.tabpagebuflist(i)[vim.fn.tabpagewinnr(i)]
+		local name = vim.fn.fnamemodify(vim.fn.bufname(buf), ":t")
+		if name ~= "" then
+			local hl = (i == cur) and "%#TabLineSel#" or "%#TabLine#"
+			local mod = vim.fn.getbufvar(buf, "&modified") == 1 and " [+]" or ""
+			out[#out + 1] = hl .. "%" .. i .. "T " .. name .. mod .. " %T"
+		end
+	end
+	return table.concat(out) .. "%#TabLineFill#"
+end
+vim.o.tabline = "%!v:lua.vim.my_tabline()"
 
 -- ======================
 -- COMMANDS / FUNCTIONS
@@ -138,6 +206,7 @@ local function toggle_terminal()
 		-- No terminal yet -> create one
 		vim.cmd("split | resize 20 | terminal")
 		term_buf = vim.api.nvim_get_current_buf()
+		-- vim.bo[term_buf].buflisted = false
 		term_win = vim.api.nvim_get_current_win()
 	end
 
@@ -239,17 +308,34 @@ vim.keymap.set("n", "<Leader>e", ":Oil<CR>", opts)
 -- Install packages
 vim.pack.add({
 	"https://github.com/nvim-tree/nvim-web-devicons",
-	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/ibhagwan/fzf-lua",
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/karb94/neoscroll.nvim",
 	"https://github.com/mg979/vim-visual-multi",
+	"https://github.com/brianaung/yasl.nvim",
 })
+
 -- Load plugins
 require("nvim-web-devicons").setup()
-require("lualine").setup()
 require("neoscroll").setup()
 require("oil").setup()
+-- require("yasl").setup()
+-- require("yasl").setup({
+-- 	components = {
+-- 		"mode",
+-- 		" ",
+-- 		"%F",
+-- 		" ",
+-- 		"branch",
+-- 		" ",
+-- 		"diagnostics",
+-- 		" ",
+-- 		"filetype",
+-- 		" ",
+-- 		"[%-8.(%l, %c%V%) %P]",
+-- 		" ",
+-- 	},
+-- })
 require("fzf-lua").setup({ { "ivy", "hide" } })
 
 -- ==================
