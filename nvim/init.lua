@@ -294,6 +294,9 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
 vim.keymap.set("n", "n", "nzzzv", opts)
 vim.keymap.set("n", "N", "Nzzzv", opts)
 
+-- lsp
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+
 -- mini pick
 vim.keymap.set("n", "<Leader>f", ":FzfLua files<CR>", opts)
 vim.keymap.set("n", "<Leader>b", ":FzfLua buffers<CR>", opts)
@@ -323,23 +326,6 @@ vim.pack.add({
 require("nvim-web-devicons").setup()
 require("neoscroll").setup()
 require("oil").setup()
--- require("yasl").setup()
--- require("yasl").setup({
--- 	components = {
--- 		"mode",
--- 		" ",
--- 		"%F",
--- 		" ",
--- 		"branch",
--- 		" ",
--- 		"diagnostics",
--- 		" ",
--- 		"filetype",
--- 		" ",
--- 		"[%-8.(%l, %c%V%) %P]",
--- 		" ",
--- 	},
--- })
 require("fzf-lua").setup({ { "ivy", "hide" } })
 
 -- ==================
