@@ -239,6 +239,7 @@ vim.keymap.set("i", "jk", "<Esc>", opts)
 -- buffer
 vim.keymap.set("n", "<Leader>q", ":bd!<CR>", opts)
 vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
+vim.keymap.set("n", "<Leader>c", "<C-w>c<CR>", opts)
 vim.keymap.set("n", "<Leader><Tab>", ":b#<CR>", opts)
 
 -- tab
