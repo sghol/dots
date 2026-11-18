@@ -25,6 +25,9 @@ vim.opt.smartcase = true
 vim.opt.path:append("**")
 vim.opt.wildmenu = true -- better completion
 
+-- grep
+vim.opt.grepprg = "rg --vimgrep --smart-case"
+
 -- Indentation --
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
@@ -293,6 +296,10 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
 vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
 vim.keymap.set("n", "n", "nzzzv", opts)
 vim.keymap.set("n", "N", "Nzzzv", opts)
+
+-- inceremental word selecting
+vim.keymap.set("n", "<C-space>", "viw", opts)
+vim.keymap.set("x", "<C-space>", "e", opts)
 
 -- lsp
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
