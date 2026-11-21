@@ -261,7 +261,7 @@ vim.keymap.set("n", "<F6>", spell_check, opts)
 -- terminal keymaps
 vim.keymap.set({ "n" }, "<Leader>T", ":tabnew<CR>:terminal<CR>GA", opts)
 vim.keymap.set({ "n", "t" }, "<C-CR>", toggle_terminal, opts)
-vim.keymap.set("t", "<C-space>", "<C-\\><C-n>", opts)
+vim.keymap.set("t", "<ESC><ESC>", "<C-\\><C-n>", opts)
 
 -- Select
 vim.keymap.set({ "n", "v" }, "<Leader>;", "V", opts)
