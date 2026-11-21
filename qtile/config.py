@@ -196,7 +196,7 @@ floating_layout = layout.Floating(
 #    SCREEN WIDGETS
 # ---------------------
 widget_defaults = dict(
-    font="Monaspace Krypton Var",
+    font="Sans",
     fontsize=12,
     padding=8,
 )
