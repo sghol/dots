@@ -1,0 +1,12 @@
+[cursor.style]
+blinking = "On"
+
+[font]
+size = 10
+normal = { family = "source code pro", style = "Regular" }
+
+[colors.primary]
+background = "#14161B"
+ 
+[window]
+padding = { x = 2, y = 0 }
