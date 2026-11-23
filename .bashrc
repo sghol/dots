@@ -55,9 +55,11 @@ export XDG_SESSION_DESKTOP=qtile
 export GOPATH=$XDG_DATA_HOME/go
 export GOBIN="$GOPATH/bin"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GOPROXY=https://package-mirror.liara.ir/repository/go/
 export GOSUMDB=off
+
+# Rust 
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
 
 # NPM
 # export NPM_CONFIG_REGISTRY=https://mirror2.chabokan.net/npm/

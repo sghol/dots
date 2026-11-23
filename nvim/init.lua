@@ -194,6 +194,15 @@ local function hi_under_cursor()
 	hlsearch_enabled = vim.o.hlsearch
 end
 
+-- always insert mode for terminal buffer
+vim.api.nvim_create_autocmd("BufEnter", {
+	callback = function()
+		if vim.bo.buftype == "terminal" and vim.fn.mode() ~= "t" then
+			vim.cmd("startinsert")
+		end
+	end,
+})
+
 -- Toggle a persistent terminal at the bottom
 local term_buf = nil
 local term_win = nil
@@ -241,15 +250,15 @@ vim.keymap.set("n", "<Leader>q", ":bd!<CR>", opts)
 vim.keymap.set("n", "<Leader>w", ":wa<CR>", opts)
 vim.keymap.set("n", "<Leader>c", "<C-w>c<CR>", opts)
 vim.keymap.set("n", "<Leader><Tab>", ":b#<CR>", opts)
-vim.keymap.set('t', '<C-Tab>', '<C-\\><C-n>g<Tab>', opts)
+vim.keymap.set("t", "<C-Tab>", "<C-\\><C-n>g<Tab>", opts)
 
 -- switch between tab 1, 2, 3
 vim.keymap.set("t", "<A-1>", "<C-\\><C-n>1gt", opts)
 vim.keymap.set("t", "<A-2>", "<C-\\><C-n>2gt", opts)
 vim.keymap.set("t", "<A-3>", "<C-\\><C-n>3gt", opts)
-vim.keymap.set({"n", "i"}, "<A-1>", "<ESC>1gt", opts)
-vim.keymap.set({"n", "i"}, "<A-2>", "<ESC>2gt", opts)
-vim.keymap.set({"n", "i"}, "<A-3>", "<ESC>3gt", opts)
+vim.keymap.set({ "n", "i" }, "<A-1>", "<ESC>1gt", opts)
+vim.keymap.set({ "n", "i" }, "<A-2>", "<ESC>2gt", opts)
+vim.keymap.set({ "n", "i" }, "<A-3>", "<ESC>3gt", opts)
 
 -- higligh search and words under cursor
 vim.keymap.set("n", "<F8>", hi_under_cursor, opts)
