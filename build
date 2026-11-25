@@ -31,9 +31,7 @@
 # # SYMLINKS
 # # --------------
 ln -s --force ~/dev/dots/nvim/ ~/.config/
-ln -s --force ~/dev/dots/tmux/ ~/.config/
 ln -s --force ~/dev/dots/qtile/ ~/.config/
-ln -s --force ~/dev/dots/emacs/ ~/.config/
 ln -s --force ~/dev/dots/.xinitrc ~/
 ln -s --force ~/dev/dots/.bashrc ~/
 ln -s --force ~/dev/dots/.gitconfig ~/
@@ -47,7 +45,6 @@ ln -s --force ~/dev/dots/misc/picom/ ~/.config/
 
 ln -s --force ~/dev/dots/bin/setbg ~/.local/bin/
 ln -s --force ~/dev/dots/bin/shot ~/.local/bin/
-ln -s --force ~/dev/dots/bin/tmuxer ~/.local/bin/
 ln -s --force ~/dev/dots/bin/autostart ~/.local/bin/
 ln -s --force ~/dev/dots/bin/launcher ~/.local/bin/
 ln -s --force ~/dev/dots/bin/pf ~/.local/bin/

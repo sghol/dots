@@ -97,7 +97,6 @@ bind 'TAB:menu-complete'
 bind '"\C-n": history-search-forward'
 bind '"\C-p": history-search-backward'
 bind 'C-l':clear-screen
-bind -x '"\C-@":"tmuxer"'
 
 # ------------
 # PROMPT
